@@ -1,0 +1,54 @@
+<!-- Inherits from base template -->
+{% extends "base.html" %}
+
+<!-- Page title -->
+{% block title %}Sign Up{% endblock %}
+
+
+{% block content %}
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    .form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5%;
+        flex-direction: column;
+    }
+</style>
+<div class="form">
+    <div>
+        <a href="/form/check"> Check Results Now</a>
+    </div>
+    
+    <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSeXe2C30qTdkZZoaETYmtmbZIVuzV-1f-bXvRgJnirKw0kumA/viewform?embedded=true&usp=pp_url&entry.346597399={{g.user['email']}}&entry.44687670={{g.user['name']}}" width="640" height="1800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
+
+<script>
+    document.getElementById("navlist").style.top = "0";
+
+    var iframe = document.getElementById('myIFrame');
+    iframe.contentDocument.body.addEventListener('onload', Handler);
+
+    function Handler() {
+        alert('works');
+    }
+</script>
+
+<script>
+    function iframeLoaded() {
+        var iFrameID = document.getElementById('myIFrame');
+        if(iFrameID) {
+              // here you can make the height, I delete it first, then I make it again
+              iFrameID.height = "";
+              iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+        }   
+    }
+  </script> 
+
+{% endblock %}

@@ -1,0 +1,549 @@
+<!-- Inherits from base template -->
+{% extends "base.html" %}
+
+<!-- Page title -->
+{% block title %}Personality Quiz{% endblock %}
+
+
+{% block content %}
+<style>
+    body {
+        background-color: black;
+        color: black;
+    }
+
+
+    .d-none {
+        display: none;
+    }
+
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrap {
+        background-color: #fff;
+        font: 18px Arial, san-serif;
+        border-radius: 10px;
+    }
+
+    h1.likert-header {
+        padding-left: 4.25%;
+        margin: 20px 0 0;
+    }
+
+    form .statement {
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 30px 0 0 4.25%;
+        margin-bottom: 10px;
+    }
+
+    form .likert {
+        list-style: none;
+        width: 100%;
+        margin: 0;
+        padding: 0 0 35px;
+        display: block;
+        border-bottom: 2px solid #efefef;
+    }
+
+    form .likert:last-of-type {
+        border-bottom: 0;
+    }
+
+    form .likert:before {
+        content: '';
+        position: relative;
+        top: 11px;
+        left: 9.5%;
+        display: block;
+        background-color: #efefef;
+        height: 4px;
+        width: 78%;
+    }
+
+    form .likert li {
+        display: inline-block;
+        width: 19%;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    form .likert li input[type=radio] {
+        display: block;
+        position: relative;
+        top: 0;
+        left: 50%;
+        margin-left: -6px;
+
+    }
+
+    
+
+    form .likert li label {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    form .statement {
+        font-size: 18px;
+    }
+
+    form .buttons {
+        margin: 30px 0;
+        padding: 0 4.25%;
+        text-align: center;
+    }
+
+    form .buttons button {
+        padding: 5px 10px;
+        background-color: black;
+        color: #fff;
+        border: 0;
+        border-radius: 3px;
+    }
+
+    form .buttons .clear {
+        background-color: #e9e9e9;
+    }
+
+    form .buttons .submit {
+        background-color: #67ab49;
+    }
+
+    form .buttons .clear:hover {
+        background-color: #ccc;
+    }
+
+    form .buttons .submit:hover {
+        background-color: #14892c;
+    }
+</style>
+
+
+<div class="form-cont" style="margin-top:100px; display: flex; justify-content:center; flex-direction:column; align-items:center">
+
+    <div class="wrap" style="width: max(400px, 50%);">
+        <div id="t1">
+            <h1 class="likert-header" style="text-align: center;">Meet new like-minded people in your college</h1>
+            <p style="text-align: center;">10 questions to find you people having your compatible personality type
+            <br>(based on the famous BIG FIVE personality test)</p>
+        </div>
+
+        <div id="t2" class="d-none">
+            <h1 class="likert-header" style="text-align: center;">Now it’s on. Just 10 questions, and we’ll try to predict your personality.</h1>
+            <p style="text-align: center;">I see Myself as Someone Who...</p>
+        </div>
+
+        <div id="t3" class="d-none">
+            <h1 class="likert-header" style="text-align: center;">Last two questions!</h1>
+            <p style="text-align: center;">to learn more about who you'd get along with best, please enter the phone number(s) of two of your closest friends so both you and we can understand why you get along <br><br>
+                if they're not signed up yet & you're accepted as a member, we'll invite them on your behalf with a priority link<br>
+                9:30 Club works better with friends
+            </p>
+        </div>
+        
+        <form method="post">
+            <div id="sec1">
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">What's your WhatsApp? </label>
+                    <input type="text" name="num" value="" placeholder="8288972141" style="height: 20px; margin-left: 10px" required>
+                </div>
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">Gender: </label>
+                    <input type="radio" name="gender" value="male">
+                    <label>Male</label>
+    
+                    <input type="radio" name="gender" value="female">
+                    <label>Female</label>
+    
+                    <input type="radio" name="gender" value="non">
+                    <label>Non Binary</label>
+    
+                    <input type="radio" name="gender" value="na">
+                    <label>Prefer not to say</label>
+                </div>
+                
+                
+    
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">What's your college?</label>
+                    <input type="text" name="college" value="" placeholder="IISER Mohali" style="height: 20px; margin-left: 10px" required>
+                </div>
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">Instagram ID: </label>
+                    <input type="text" name="insta" value="" placeholder="saswat07" style="height: 20px; margin-left: 10px" required>
+                </div>
+
+                <div class="buttons">
+                    <button class="submit" type="button"  formnovalidate>Submit</button>
+                </div>
+            </div>
+
+            <!-- <div id="sec2" class="d-none">
+                
+                <label class="statement">Is talkative?</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q1" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q1" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q1" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q1" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q1" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+                
+                <label class="statement">Tends to find fault with others</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q2" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q2" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q2" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q2" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q2" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+                
+                <label class="statement">Does a thorough job</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q3" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q3" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q3" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q3" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q3" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+                
+                <label class="statement">Is depressed</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q4" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q4" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q4" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q4" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q4" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+                
+                <label class="statement">Is original, comes up with new ideas</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q5" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q5" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q5" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q5" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q5" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+
+                <label class="statement">Is reserved</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q6" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q6" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q6" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q6" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q6" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+
+                <label class="statement">Is helpful and unselfish with others</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q7" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q7" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q7" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q7" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q7" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+
+                <label class="statement">Can be somewhat careless</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q8" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q8" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q8" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q8" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q8" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+
+                <label class="statement">Is relaxed, handles stress well</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q9" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q9" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q9" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q9" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q9" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+
+                <label class="statement">Is curious about many different things</label>
+                <ul class='likert'>
+                    <li>
+                        <input type="radio" name="q10" value="1">
+                        <label>Strongly agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q10" value="2">
+                        <label>Agree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q10" value="3">
+                        <label>Neutral</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q10" value="4">
+                        <label>Disagree</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="q10" value="5">
+                        <label>Strongly disagree</label>
+                    </li>
+                </ul>
+
+
+                <div class="buttons">
+                    <button class="clear" type="button" onclick="show('sec1')">Back</button>
+                    <button class="submit" type="button" onclick="show('sec3')">Next</button>
+                </div>
+            </div>
+
+            <div id="sec3" class="d-none">
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">best friend #1 (Add country code, e.g. +91): </label>
+                    <input type="text" name="f1" value="" placeholder="8288972141" style="height: 20px; margin-left: 10px" required maxlength="14">
+                </div>
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">best friend #2 (Add country code, e.g. +91): </label>
+                    <input type="text" name="f2" value="" placeholder="8288972141" style="height: 20px; margin-left: 10px" required maxlength="14">
+                </div>
+                <div style="display: flex; align-items:baseline; flex-direction:column;">
+                    <label class="statement">Hey, btw what does your YouTube recommendation look like?   (select max 3)</label>
+                    <div style="margin-left: 50px;">
+                        <input type="checkbox" name="reco" value="Sports" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Sports</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Education/Science" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Education/Science</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Politics" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Politics</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Gaming" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Gaming</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Beauty" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Beauty</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Vlogs" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Vlogs</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Music" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Music</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Memes" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Memes</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Celebrities" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Celebrities</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Cooking/Foods" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Cooking/Foods</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Comedy" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Comedy</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Talkshow" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Talkshow</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Movie/Shows" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Movie/Shows</label>
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <input class='check' type="checkbox" name="reco" value="Anime" placeholder="8288972141" style="height: 20px; margin-left: 10px"> <label>Anime</label>
+                    </div>
+                </div>    
+                <div style="display: flex; align-items:baseline;">
+                    <div>
+                        <input type="checkbox" name="terms" value="Anime" placeholder="8288972141" style="height: 20px; margin-left: 10px" required> <label> Accept <a href="/terms">terms and condtions </a></label>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="clear" type="button" onclick="show('sec2')">Back</button>
+                    <button class="submit">Submit</button>
+                </div>
+            </div> -->
+           
+        </form>
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("navlist").style.top = "0";
+
+    function show(divid){
+        if(divid == 'sec1'){
+            document.getElementById('sec1').classList.remove('d-none')
+            document.getElementById('sec3').classList.add('d-none')
+            document.getElementById('sec2').classList.add('d-none')
+            document.getElementById('t1').classList.remove('d-none')
+            document.getElementById('t3').classList.add('d-none')
+            document.getElementById('t2').classList.add('d-none')
+        }
+        if(divid == 'sec2'){
+            document.getElementById('sec1').classList.add('d-none')
+            document.getElementById('sec2').classList.remove('d-none')
+            document.getElementById('sec3').classList.add('d-none')
+            document.getElementById('t1').classList.add('d-none')
+            document.getElementById('t2').classList.remove('d-none')
+            document.getElementById('t3').classList.add('d-none')
+        }
+        if(divid == 'sec3'){
+            document.getElementById('sec2').classList.add('d-none')
+            document.getElementById('sec3').classList.remove('d-none')
+            document.getElementById('sec1').classList.add('d-none')
+            document.getElementById('t2').classList.add('d-none')
+            document.getElementById('t3').classList.remove('d-none')
+            document.getElementById('t1').classList.add('d-none')
+        }
+    }
+
+    var checks = document.querySelectorAll(".check");
+    var max = 2;
+    for (var i = 0; i < checks.length; i++)
+    checks[i].onclick = selectiveCheck;
+    function selectiveCheck (event) {
+    var checkedChecks = document.querySelectorAll(".check:checked");
+    if (checkedChecks.length >= max + 1)
+        return false;
+    }
+
+    $('div.checkbox-group.required :checkbox:checked').length > 0
+</script>
+
+{% endblock %}
