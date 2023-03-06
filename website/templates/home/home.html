@@ -2,13 +2,12 @@
 {% extends "base.html" %}
 
 <!-- Page title -->
-{% block title %}ResNote{% endblock %}
 
 
 {% block content %}
 
 <section class="sec1">
-    <img src="{{url_for('static', filename='images/chan.png')}}" style="width: 15%; height:10%" class="img1" alt="">
+    <img src="{{url_for('static', filename='images/chan.png')}}" style="width: max(15%,100px); height:10%" class="img1" alt="">
     <img src="{{url_for('static', filename='images/frnds.png')}}" style="margin-top: 5px;" class='img2' alt="">
     <h2>Dinner with 3 new like minded people every night.</h2>
     <a class="btn" href="/googleLogin">Experience today</a>
@@ -23,7 +22,7 @@
 </div>
 <div class="sec2 sec">
     <h1 style="color: black;">Safety 100, fun ∞.</h1>
-    <p> A vetted group of 4 in a curated public place <br> Can anything more be done to earn your?</p>
+    <p> A vetted group of 4 in a curated public place. <br> Can anything more be done to earn your trust?</p>
 </div>
 <section class="sec1">
 

@@ -74,6 +74,34 @@ def create_app(test_config=None):
             db_connection.commit()
             return redirect(url_for('thanks'))
         return render_template(template)
+    
+    @app.route("/join", methods=('GET', 'POST'))
+    @mobile_template('home/join.html')
+    def join(template):
+
+        if not g.user:
+            return redirect(url_for('auth.google_login'))
+        
+        if not g.user['tble']=='0':    
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("SELECT MAX(tble) AS max FROM cult")
+            max = db.fetchall()
+            user = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (max[0][0],))
+            print(len(user))
+            if len(user)>4:
+                tle = max[0][0] + 1
+                numppl = 1
+            else:
+                tle = max[0][0]
+                numppl = len(user) + 1
+            print(numppl, tle, "adca")
+            return render_template(template, tle=tle, numppl=numppl)
+        else:
+            tle = user['tble']
+            numppl = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (int(tle),))
+            return render_template(template, tle=tle, numppl=numppl)
+        return render_template(template, )
       
     @app.route("/thanks")
     @mobile_template('home/thanks.html')
