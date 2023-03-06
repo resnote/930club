@@ -25,11 +25,11 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 serial = URLSafeTimedSerializer('.k;4q>E;"cV}#SV$') #strong key
 
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
-GOOGLE_CLIENT_ID ="235729726809-m7hq0ieje7efrmvs4p03gtv4mi61s9nl.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID ="428722172324-dcqj9kqu41c32lq34k7a98qtr4uaskpv.apps.googleusercontent.com"
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="https://social.chans/callback"
+    redirect_uri="https://chans.social/callback"
 )
 
 
