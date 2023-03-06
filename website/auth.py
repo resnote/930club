@@ -29,7 +29,7 @@ GOOGLE_CLIENT_ID ="235729726809-m7hq0ieje7efrmvs4p03gtv4mi61s9nl.apps.googleuser
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="http://localhost:5000/callback"
+    redirect_uri="https://social.chans/callback"
 )
 
 
