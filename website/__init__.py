@@ -56,7 +56,7 @@ def create_app(test_config=None):
     
     
     @app.route("/form1", methods=('GET', 'POST'))
-    @mobile_template('home/form1.html')
+    @mobile_template('home/form.html')
     def form1(template):
 
         if not g.user:
