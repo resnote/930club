@@ -80,7 +80,7 @@ def callback():
     request_session = requests.session()
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session=cached_session)
-    time.sleep(5)
+    # time.sleep(5)
     id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
@@ -100,7 +100,7 @@ def callback():
         id = request.cookies.get('request_id')
         if user[-1]==1:
             return redirect(url_for('form1'))
-        return redirect(url_for('scores'))
+        return redirect(url_for('home'))
     else:
         # Add user
         date = datetime.datetime.now()

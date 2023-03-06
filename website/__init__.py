@@ -56,7 +56,7 @@ def create_app(test_config=None):
     
     
     @app.route("/form1", methods=('GET', 'POST'))
-    @mobile_template('home/signup.html')
+    @mobile_template('home/form1.html')
     def form1(template):
 
         if not g.user:
@@ -70,11 +70,18 @@ def create_app(test_config=None):
             
             db_connection = get_db()
             db = db_connection.cursor()
-            db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s, WHERE `id`=%s",(num, gender, college, insta, user_id))
+            db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s WHERE `id`=%s",(num, gender, college, insta, user_id))
             db_connection.commit()
-            return redirect(url_for('home'))
+            return redirect(url_for('thanks'))
         return render_template(template)
       
+    @app.route("/thanks")
+    @mobile_template('home/thanks.html')
+    def thanks(template):
+        if g.user:
+            if not g.user['num']:
+                return redirect(url_for('form1'))
+        return render_template(template)
     
     # user authentication
     from . import auth
