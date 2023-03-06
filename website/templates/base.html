@@ -187,8 +187,9 @@
 
         <a href="#"><img src="{{url_for('static', filename='images/chan.png')}}" width="100px" alt=""></a>
         <div class="topnav-right" id="myNavbar">
+            {% if not g.user %}
             <a href="/googleLogin">Login</a>
-            
+            {% endif %}
         </div>
 
         <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-1"></div>
