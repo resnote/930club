@@ -80,8 +80,8 @@
         background: transparent;
         font-size: larger;
         margin-bottom: 30px;
-        border: none;
-        text-decoration: underline;
+        border: solid 1px;
+        text-decoration: none;
     }
 
     .arw {
@@ -189,6 +189,8 @@
         <div class="topnav-right" id="myNavbar">
             {% if not g.user %}
             <a href="/googleLogin">Login</a>
+            {% else %}
+            <a href="">{{g.user['name']}}</a>
             {% endif %}
         </div>
 
