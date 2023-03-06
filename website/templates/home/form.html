@@ -206,17 +206,17 @@
         
         <form id="msform" method="post">
             <fieldset>
-              <h2 class="fs-title">Personal Details</h2>
+              <h1 class="fs-title">Personal Details</h1>
               <h3 class="fs-subtitle">We will never sell it</h3>
-              <input type="text" name="num" placeholder="WhatsApp Number" />
-              <select name="gender" id="gender">
+              <input type="text" name="num" placeholder="WhatsApp Number" required/>
+              <select name="gender" id="gender" required>
                 <option value="gender" disabled selected>Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="non">Non binary</option>
               </select>
-              <input type="text" name="college" placeholder="College" />
-              <input type="text" name="insta" placeholder="Instagram" />
+              <input type="text" name="college" placeholder="College" required/>
+              <input type="text" name="insta" placeholder="Instagram" required/>
               <button class="submit action-button" target="_top">Submit</button>
             </fieldset>
           </form>
