@@ -66,7 +66,7 @@ def create_app(test_config=None):
             num = request.form['num']
             gender = request.form['gender']
             college = request.form['college']
-            insta = request.form['insta']
+            insta = str(request.form['insta'])
             
             db_connection = get_db()
             db = db_connection.cursor()
@@ -92,12 +92,13 @@ def create_app(test_config=None):
             if len(user)>4:
                 tle = max[0][0] + 1
                 numppl = 1
-            elif max == 0:
-                tle = max[0][0] + 1
-                numppl = 1
             else:
-                tle = max[0][0]
-                numppl = len(user) + 1
+                if max[0][0] == 0:
+                    tle = max[0][0] + 1
+                    numppl = 1
+                else:
+                    tle = max[0][0]
+                    numppl = len(user)
             print(numppl, tle, "adca")
             db_connection = get_db()
             db = db_connection.cursor()
