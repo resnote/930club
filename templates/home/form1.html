@@ -1,0 +1,234 @@
+<!-- Inherits from base template -->
+{% extends "base.html" %}
+
+<!-- Page title -->
+{% block title %}Personality Quiz{% endblock %}
+
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
+        color: black;
+    }
+
+
+    .d-none {
+        display: none;
+    }
+
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wrap {
+        background-color: #fff;
+        font: 18px Arial, san-serif;
+        border-radius: 10px;
+    }
+
+    h1.likert-header {
+        padding-left: 4.25%;
+        margin: 20px 0 0;
+    }
+
+    form .statement {
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 30px 0 0 4.25%;
+        margin-bottom: 10px;
+    }
+
+    form .likert {
+        list-style: none;
+        width: 100%;
+        margin: 0;
+        padding: 0 0 35px;
+        display: block;
+        border-bottom: 2px solid #efefef;
+    }
+
+    form .likert:last-of-type {
+        border-bottom: 0;
+    }
+
+    form .likert:before {
+        content: '';
+        position: relative;
+        top: 11px;
+        left: 9.5%;
+        display: block;
+        background-color: #efefef;
+        height: 4px;
+        width: 78%;
+    }
+
+    form .likert li {
+        display: inline-block;
+        width: 19%;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    form .likert li input[type=radio] {
+        display: block;
+        position: relative;
+        top: 0;
+        left: 50%;
+        margin-left: -6px;
+
+    }
+
+    
+
+    form .likert li label {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    form .statement {
+        font-size: 18px;
+    }
+
+    form .buttons {
+        margin: 30px 0;
+        padding: 0 4.25%;
+        text-align: center;
+    }
+
+    form .buttons button {
+        padding: 5px 10px;
+        background-color: black;
+        color: #fff;
+        border: 0;
+        border-radius: 3px;
+    }
+
+    form .buttons .clear {
+        background-color: #e9e9e9;
+    }
+
+    form .buttons .submit {
+        background-color: #67ab49;
+    }
+
+    form .buttons .clear:hover {
+        background-color: #ccc;
+    }
+
+    form .buttons .submit:hover {
+        background-color: #14892c;
+    }
+</style>
+
+
+<div class="form-cont" style="margin-top:100px; display: flex; justify-content:center; flex-direction:column; align-items:center">
+
+    <div class="wrap" style="width: max(400px, 50%);">
+        <div id="t1">
+            <h1 class="likert-header" style="text-align: center;">Meet new like-minded people in your college</h1>
+            <p style="text-align: center;">10 questions to find you people having your compatible personality type
+            <br>(based on the famous BIG FIVE personality test)</p>
+        </div>
+
+        <div id="t2" class="d-none">
+            <h1 class="likert-header" style="text-align: center;">Now it’s on. Just 10 questions, and we’ll try to predict your personality.</h1>
+            <p style="text-align: center;">I see Myself as Someone Who...</p>
+        </div>
+
+        <div id="t3" class="d-none">
+            <h1 class="likert-header" style="text-align: center;">Last two questions!</h1>
+            <p style="text-align: center;">to learn more about who you'd get along with best, please enter the phone number(s) of two of your closest friends so both you and we can understand why you get along <br><br>
+                if they're not signed up yet & you're accepted as a member, we'll invite them on your behalf with a priority link<br>
+                9:30 Club works better with friends
+            </p>
+        </div>
+        
+        <form method="post">
+            <div id="sec1">
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">What's your WhatsApp? </label>
+                    <input type="text" name="num" value="" placeholder="8288972141" style="height: 20px; margin-left: 10px" required>
+                </div>
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">Gender: </label>
+                    <input type="radio" name="gender" value="male">
+                    <label>Male</label>
+    
+                    <input type="radio" name="gender" value="female">
+                    <label>Female</label>
+    
+                    <input type="radio" name="gender" value="non">
+                    <label>Non Binary</label>
+    
+                    <input type="radio" name="gender" value="na">
+                    <label>Prefer not to say</label>
+                </div>
+                
+                
+    
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">What's your college?</label>
+                    <input type="text" name="college" value="" placeholder="IISER Mohali" style="height: 20px; margin-left: 10px" required>
+                </div>
+                <div style="display: flex; align-items:baseline;">
+                    <label class="statement">Instagram ID: </label>
+                    <input type="text" name="insta" value="" placeholder="saswat07" style="height: 20px; margin-left: 10px" required>
+                </div>
+
+                <div class="buttons">
+                    <button class="submit" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    document.getElementById("navlist").style.top = "0";
+
+    function show(divid){
+        if(divid == 'sec1'){
+            document.getElementById('sec1').classList.remove('d-none')
+            document.getElementById('sec3').classList.add('d-none')
+            document.getElementById('sec2').classList.add('d-none')
+            document.getElementById('t1').classList.remove('d-none')
+            document.getElementById('t3').classList.add('d-none')
+            document.getElementById('t2').classList.add('d-none')
+        }
+        if(divid == 'sec2'){
+            document.getElementById('sec1').classList.add('d-none')
+            document.getElementById('sec2').classList.remove('d-none')
+            document.getElementById('sec3').classList.add('d-none')
+            document.getElementById('t1').classList.add('d-none')
+            document.getElementById('t2').classList.remove('d-none')
+            document.getElementById('t3').classList.add('d-none')
+        }
+        if(divid == 'sec3'){
+            document.getElementById('sec2').classList.add('d-none')
+            document.getElementById('sec3').classList.remove('d-none')
+            document.getElementById('sec1').classList.add('d-none')
+            document.getElementById('t2').classList.add('d-none')
+            document.getElementById('t3').classList.remove('d-none')
+            document.getElementById('t1').classList.add('d-none')
+        }
+    }
+
+    var checks = document.querySelectorAll(".check");
+    var max = 2;
+    for (var i = 0; i < checks.length; i++)
+    checks[i].onclick = selectiveCheck;
+    function selectiveCheck (event) {
+    var checkedChecks = document.querySelectorAll(".check:checked");
+    if (checkedChecks.length >= max + 1)
+        return false;
+    }
+
+    $('div.checkbox-group.required :checkbox:checked').length > 0
+</script>
+
+{% endblock %}
