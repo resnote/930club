@@ -216,7 +216,7 @@
                 <option value="non">Non binary</option>
               </select>
               <input type="text" name="college" placeholder="College*" required/>
-              <input type="date" name="insta" placeholder="Birthday"/>
+              <input type="text" name="insta" placeholder="Birthday" onfocus="(this.type='date')" onblur="(this.type='text')"/>
               <button class="submit action-button" target="_top">Submit</button>
             </fieldset>
           </form>
