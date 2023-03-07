@@ -92,7 +92,7 @@ def create_app(test_config=None):
             if len(user)>4:
                 tle = max[0][0] + 1
                 numppl = 1
-            elif max = 0:
+            elif max == 0:
                 tle = max[0][0] + 1
                 numppl = 1
             else:
