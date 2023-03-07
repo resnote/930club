@@ -91,14 +91,14 @@ def create_app(test_config=None):
             print(len(user))
             if len(user)>4:
                 tle = max[0][0] + 1
-                numppl = 1
+                numppl = 4 - 1
             else:
                 if max[0][0] == 0:
                     tle = max[0][0] + 1
-                    numppl = 1
+                    numppl = 4- 1
                 else:
                     tle = max[0][0]
-                    numppl = len(user)
+                    numppl = 4 - len(user)
             print(numppl, tle, "adca")
             db_connection = get_db()
             db = db_connection.cursor()
