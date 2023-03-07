@@ -97,7 +97,7 @@ def create_app(test_config=None):
                 numppl = 1
             else:
                 tle = max[0][0]
-                numppl = len(user) + 1
+                numppl = len(user)
             print(numppl, tle, "adca")
             db_connection = get_db()
             db = db_connection.cursor()
