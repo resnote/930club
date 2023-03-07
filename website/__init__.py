@@ -92,16 +92,24 @@ def create_app(test_config=None):
             if len(user)>4:
                 tle = max[0][0] + 1
                 numppl = 1
+            elif max = 0:
+                tle = max[0][0] + 1
+                numppl = 1
             else:
                 tle = max[0][0]
                 numppl = len(user) + 1
             print(numppl, tle, "adca")
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `cult` SET `tble`=%s WHERE `id`=%s",(tle , g.user['id']))
+            db_connection.commit()
             return render_template(template, tle=tle, numppl=numppl)
         else:
-            tle = user['tble']
-            numppl = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (int(tle),))
+            tle = g.user['tble']
+            numppl = len(db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (int(tle),)))
             return render_template(template, tle=tle, numppl=numppl)
-        return render_template(template, )
+        
+        return render_template(template)
       
     @app.route("/thanks")
     @mobile_template('home/thanks.html')
