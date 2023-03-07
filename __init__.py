@@ -92,10 +92,10 @@ def create_app(test_config=None):
             if len(user)>4:
                 tle = max[0][0] + 1
                 numppl = 1
-            elif max[0][0] == 0:
-                tle = max[0][0] + 1
-                numppl = 1
             else:
+                if max[0][0] == 0:
+                    tle = max[0][0] + 1
+                    numppl = 1
                 tle = max[0][0]
                 numppl = len(user)
             print(numppl, tle, "adca")
