@@ -70,7 +70,7 @@ def create_app(test_config=None):
             
             db_connection = get_db()
             db = db_connection.cursor()
-            db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s WHERE `id`=%s",(num, gender, college, insta, user_id))
+            db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s, `form`=%s WHERE `id`=%s",(num, gender, college, insta, 2, user_id))
             db_connection.commit()
             return redirect(url_for('thanks'))
         return render_template(template)
@@ -81,6 +81,9 @@ def create_app(test_config=None):
 
         if not g.user:
             return redirect(url_for('auth.google_login'))
+        
+        if g.user['form']==1:
+            return redirect(url_for('form1'))
         
         if not g.user['tble']=='0':    
             db_connection = get_db()
@@ -103,6 +106,7 @@ def create_app(test_config=None):
             db_connection = get_db()
             db = db_connection.cursor()
             db.execute("UPDATE `cult` SET `tble`=%s WHERE `id`=%s",(tle , g.user['id']))
+            db.execute("UPDATE `cult` SET `status`=%s WHERE `id`=%s",(1 , g.user['id']))
             db_connection.commit()
             return render_template(template, tle=tle, numppl=numppl)
         else:
@@ -110,8 +114,43 @@ def create_app(test_config=None):
             numppl = len(db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (int(tle),)))
             return render_template(template, tle=tle, numppl=numppl)
         
-        return render_template(template)
-      
+    
+    @app.route("/status", methods=('GET', 'POST'))
+    @mobile_template('home/status.html')
+    def status(template):
+        if not g.user:
+            return redirect(url_for('auth.google_login'))
+        
+        if request.method=='POST':
+            user_id = g.user['id']
+            img = request.form['img']
+            
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `cult` SET `img`=%s WHERE `id`=%s",(img, user_id))
+            db_connection.commit()
+            return redirect(url_for('status'))
+        if g.user['status'] == 1:
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `cult` SET `status`=%s WHERE `id`=%s",(2 , g.user['id']))
+            db_connection.commit()
+            db.close()
+            
+            users = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (g.user['tble'],))
+            # print(users)
+            return render_template(template, users=users)
+        
+        if g.user['status'] == 2:
+            print(g.user['img'])
+            
+            users = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (g.user['tble'],))
+            # print(users)
+            return render_template(template, users=users)
+        
+        return render_template('home/thanks.html')
+    
+    
     @app.route("/thanks")
     @mobile_template('home/thanks.html')
     def thanks(template):

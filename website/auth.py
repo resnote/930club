@@ -92,15 +92,14 @@ def callback():
     email = id_info['email']
     password = id_info['sub']
 
-    user = db_fetch('SELECT * FROM  `cult` WHERE `email` = %s', (email,), one=True)
+    user = db_fetch('SELECT * FROM  `cult` WHERE `email`=%s', (email,), one=True)
     if user is not None:
         session.clear()
         session['user_id'] = user[0]
         flash("login success" , "success")
         id = request.cookies.get('request_id')
-        if user[-1]==1:
-            return redirect(url_for('form1'))
-        return redirect(url_for('home'))
+        # if user[-1]==1:
+        #     return redirect(url_for('form1'))
     else:
         # Add user
         date = datetime.datetime.now()
@@ -111,4 +110,4 @@ def callback():
         session.clear()
         session['user_id'] = user[0]
     flash('Your account has been created. Now you can login to the ResNote extension and start exploring!', 'info')
-    return redirect(url_for('form1'))
+    return redirect(url_for('thanks'))
