@@ -116,7 +116,7 @@ def create_app(test_config=None):
         
     
     @app.route("/status", methods=('GET', 'POST'))
-    @mobile_template('mobile/home/status.html')
+    @mobile_template('home/status.html')
     def status(template):
         if not g.user:
             return redirect(url_for('auth.google_login'))

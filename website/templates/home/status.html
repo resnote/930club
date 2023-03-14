@@ -8,7 +8,7 @@
 {% block content %}
 <style>
     body {
-        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
+        background: #dde9e1;
         color: black;
     }
 
@@ -376,7 +376,7 @@
     <div>
         <h1>Who are you meeting today?</h1>
     </div>
-    <div style="display: flex; flex-direction:column; gap:20px">
+    <!-- <div style="display: flex; flex-direction:column; gap:20px">
         <div class="wrapper" style="display: flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap: 50px">
             <div style="min-width: 400px; margin:auto;">
                 {% if g.user['img']!=None %}
@@ -449,8 +449,46 @@
             {% endif %}
         {% endfor %}
 
-    </div>
-    <!-- <div class="main__cards" style="gap: 20px">
+    </div> -->
+    <div class="main__cards" style="gap: 20px; width: max(300px,50%); display: flex; flex-wrap:wrap; margin-top:10px;">
+        <article class="team-card">
+            {% if g.user['img'] != None %}
+            <div class="team-card__img-box "><img class="team-card__img blur"
+                    
+                src="{{g.user['img']}}"
+                alt="Photo not available" /></div>
+            {% else %}
+            
+            <div class="team-card__img-box"><div class="upload-btn-wrapper">
+                <img id="img" height="150">
+                <button class="btn">Upload your photo <br> to see others</button>
+                <input id="inp" type="file"/>
+              </div></div>
+            {% endif %}
+            <div class="team-card__content" style="line-height: normal;">
+                <hgroup class="team-card__intro" >
+                    <p class="team-card__title">{{g.user['name']}}</p>
+                    <p class="team-card__title">23, {{g.user['gender']}}</p>
+                    <p class="team-card__title">{{g.user['college']}}</p>
+                </hgroup>
+                    {% if g.user['status'] == 1 %} 
+                    <div style="margin-bottom: 10px;">
+                        <a style="color: green; width: 40%; margin:auto" href="/status/2" class="btn">I'm here</a>
+                        <a style="width: 40%; margin:auto" href="/status/3" class="btn">Cancel</a>
+                    </div>
+                
+                    {% elif  g.user['status'] == 2 %}
+                    
+                    <div style="margin-bottom: 10px;">
+                        <p class="team-card__job-title" style="color:green; font-size:larger"><strong>Arrived</strong> </p>
+                        <a style="width: 40%; margin:auto" href="/status/3" class="btn">Cancel</a>
+                    </div>
+                    {% else %}
+                    <p class="team-card__job-title" style="color:red; width: 60%; font-size:larger"><strong>Cancelled</strong> </p>
+                    {% endif %}
+                
+            </div>
+        </article>
         {% for user in users %}
             {% if g.user['id'] != user[0] %}
             <article class="team-card">
@@ -468,20 +506,22 @@
                 {% endif %}
                 <div class="team-card__content">
                     <hgroup class="team-card__intro">
-                        <h3 class="team-card__title">Name:{{user[1]}}</h3>
+                        <p class="team-card__title">{{user[1]}}</p>
+                        <p class="team-card__title">23, {{user[4]}}</p>
+                        <p class="team-card__title">{{user[5]}}</p>
                         {% if user[-2] == 1 %} 
-                        <p class="team-card__job-title">Status: Coming</p>
+                        <p class="team-card__job-title"  style="font-size:larger"><strong>Coming</strong> </p>
                         {% elif  user[-2] == 2 %}
-                        <p class="team-card__job-title" style="color:green;">Status: Arrived</p>
+                        <p class="team-card__job-title" style="color:green; font-size:larger"><strong>Arrived</strong> </p>
                         {% else %}
-                        <p class="team-card__job-title" style="color:red;">Status: Arrived</p>
+                        <p class="team-card__job-title" style="color:red; font-size:larger"><strong>Cancelled</strong> </p>
                         {% endif %}
                     </hgroup>
                 </div>
             </article>
             {% endif %}
         {% endfor %}
-    </div> -->
+    </div>
 
 
     <!-- {% if g.user['img']!=None %}
