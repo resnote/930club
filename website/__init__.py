@@ -72,7 +72,7 @@ def create_app(test_config=None):
             db = db_connection.cursor()
             db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s, `form`=%s WHERE `id`=%s",(num, gender, college, insta, 2, user_id))
             db_connection.commit()
-            return redirect(url_for('thanks2'))
+            return redirect(url_for('join'))
         return render_template(template)
     
     @app.route("/join", methods=('GET', 'POST'))
