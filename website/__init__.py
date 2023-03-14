@@ -133,8 +133,32 @@ def create_app(test_config=None):
 
             
         users = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (g.user['tble'],))
+        if g.user['tble']==0:
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("SELECT MAX(tble) AS max FROM cult")
+            max = db.fetchall()
+            user = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (max[0][0],))
+            print(len(user))
+            if len(user)>4:
+                tle = max[0][0] + 1
+                numppl = 4 - 1
+            else:
+                if max[0][0] == 0:
+                    tle = max[0][0] + 1
+                    numppl = 4- 1
+                else:
+                    tle = max[0][0]
+                    numppl = 4 - len(user)
+            print(numppl, tle, "adca")
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `cult` SET `tble`=%s WHERE `id`=%s",(tle , g.user['id']))
+            db.execute("UPDATE `cult` SET `status`=%s WHERE `id`=%s",(1 , g.user['id']))
+            db_connection.commit()
+            return redirect(url_for('status'))
         # print(users)
-        return render_template(template, users=users)
+        return render_template(template, users=users, np=len(users))
         
     
     @app.route("/status/2", methods=('GET', 'POST'))
