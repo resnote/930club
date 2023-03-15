@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400&family=Karla:ital,wght@1,400;1,500;1,700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Chans</title>
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='images/5.jpeg')}}">
+</head>
+
+<style>
+    html {
+        height: 100%;
+        min-height: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    body {
+        margin: 0px;
+        padding: 0px;
+        margin-top: 0px;
+        padding-top: 0px;
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        background: #fff;
+    }
+    
+    h2 {
+        font-family: 'Karla', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 150%;
+        margin: 0 auto 16px;
+    }
+
+    body {
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+    }
+
+    .sec1 {
+        align-items: center;
+        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .sec1 .img1 {
+        height: 5vh;
+        margin: 30px 20px 0;
+    }
+
+    .sec1 .img2 {
+        height: 45vh;
+        margin-bottom: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        object-fit: contain;
+        width: 90vw;
+        margin-bottom: 30px;
+    }
+
+    
+
+    .btn {
+        background: transparent;
+        font-size: larger;
+        margin-bottom: 30px;
+        border: solid 1px;
+        text-decoration: none;
+        color: #000;
+    }
+
+    .arw {
+        width: max(20px,2vw);
+    }
+
+    .sec {
+        align-items: center;
+        background: #fbfbfe;
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        height: 55vh;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+      .sec h1{
+        text-align: center;
+        font-family: 'Karla', sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 150%;
+        margin: 0 auto 16px;
+      }
+      .sec p {
+        font-family: 'Karla', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 150%;
+        margin-top: 0;
+        max-width: 700px;
+        padding-left: 30px;
+        padding-right: 30px;
+        text-align: center;
+      }
+
+      .sec1 p {
+        font-family: 'Karla', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 150%;
+        margin-top: 0;
+        max-width: 700px;
+        padding-left: 30px;
+        padding-right: 30px;
+        text-align: center;
+      }
+
+
+    /* styling navlist */
+    #navlist {
+        font-family: 'Karla', sans-serif;
+        display: flex;
+        position: fixed;
+        top: -70px;
+        width: 100vw;
+        transition: top 0.3s;
+    }  
+      /* styling navlist anchor element */
+    #navlist a {
+        float: left;
+        display: block;
+        color: #ffffff;
+        text-align: center;
+        padding: 0 50px;
+        text-decoration: none;
+        font-size: 1.2em;
+
+    }
+
+
+
+    .navbar {
+        position: fixed;
+        bottom: auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 70px;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.27);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+    }
+
+    .topnav-right {
+        position: absolute;
+        right: 0;
+        width: auto;
+    }
+</style>
+
+<body>
+    <div id="navlist" class="navbar w-nav"
+    style="transform: translateX(0px) translateY(0px) translateZ(0px); transform-style: preserve-3d; transition: transform 360ms ease 0s;">
+
+        <a href="/"><img src="{{url_for('static', filename='images/chan.png')}}" width="100px" alt=""></a>
+        <div class="topnav-right" id="myNavbar">
+            {% if not g.user %}
+            <a href="/googleLogin">Login</a>
+            {% else %}
+            <a href="">{{g.user['name']}}</a>
+            {% endif %}
+        </div>
+
+        <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-1"></div>
+    </div>
+
+
+  {% block content %}{% endblock %}
+  
+</body>
+
+
+
+</html>
