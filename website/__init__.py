@@ -93,7 +93,7 @@ def create_app(test_config=None):
             db = db_connection.cursor()
             db.execute("UPDATE `cult` SET `img`=%s WHERE `id`=%s",(img, user_id))
             db_connection.commit()
-            return redirect(url_for('status'))
+            return redirect(url_for('join'))
 
             
         users = db_fetch('SELECT * FROM  `cult` WHERE `tble`=%s', (g.user['tble'],))
@@ -120,7 +120,7 @@ def create_app(test_config=None):
             db.execute("UPDATE `cult` SET `tble`=%s WHERE `id`=%s",(tle , g.user['id']))
             db.execute("UPDATE `cult` SET `status`=%s WHERE `id`=%s",(1 , g.user['id']))
             db_connection.commit()
-            return redirect(url_for('status'))
+            return redirect(url_for('join'))
         # print(users)
         return render_template(template, users=users, np=len(users))
         

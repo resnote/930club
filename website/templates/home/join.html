@@ -322,6 +322,7 @@
         padding: 8px 20px;
         border-radius: 50%;
         height: 100px;
+        width: 100px;
     }
 
     .upload-btn-wrapper input[type=file] {
@@ -331,9 +332,16 @@
         top: 0;
         opacity: 0;
     }
+
+    .dd-none{
+        display: none !important; 
+    }
+
+    .o {
+        display: flex;
+    }
 </style>
 
-{% if g.user['img']==None %}
 <style>
     .blur {
         filter: blur(4px);
@@ -363,7 +371,7 @@
     }
 </style>
 
-{% endif %}
+
 
 
 <div class="form-cont"
@@ -386,157 +394,36 @@
     </div>
 
 </div>
-<div class="d-none"
+<div class=""
     style="margin-top: 100px;margin-bottom: 100px; display:flex; align-items:center; justify-content:center; flex-direction:column; font-size:max( 22px,2.5vw)">
     <div>
         <h2 style="font-size:max( 22px,2.5vw); font-family: 'Karla', sans-serif;">Who are you meeting today?</h2>
     </div>
-    <!-- <div style="display: flex; flex-direction:column; gap:20px">
-        <div class="wrapper" style="display: flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap: 50px">
-            <div style="min-width: 400px; margin:auto;">
-                {% if g.user['img']!=None %}
-                <img class="team-card__img blur"
-                    style="border-radius: 50%; width: 150px; height:150px"    
-                    src="{{g.user['img']}}"
-                    alt="Photo not available" />
-                {% else %}
-                <div class="upload-btn-wrapper">
-                    <img id="img" height="150">
-                    <button class="btn">Upload your photo to see others</button>
-                    <input id="inp" type="file"/>
-                  </div>
-                {% endif %}
-            </div>
-            <div style="min-width: 400px; margin:auto;">
-                <div style="display: flex; justify-content:center; width:fit-content">
-                        <p class="team-card__title">{{g.user['name']}}</p>
-                        <p class="team-card__title">23, {{g.user['gender']}}</p>
-                        <p class="team-card__title">{{g.user['college']}}</p>
-                </div>
-            </div>
-            <div style="min-width: 400px; margin:auto;">
-                {% if g.user['status'] == 1 %} 
-                <a style="color: green;" href="/status/2" class="btn">I'm here</a><br>
-                <a style="color: red;" href="/status/3" class="btn">Cancel</a>
-                {% elif  g.user['status'] == 2 %}
-                <p class="team-card__job-title" style="color:green;">Arrived</p>
-                <a style="color: red;" href="/status/3" class="btn">Cancel</a>
-                {% else %}
-                <p class="team-card__job-title" style="color:red;">Cancelled</p>
-                {% endif %}
-            </div>
+    <div id="warning1" style=" width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
+        
+        <div style="padding: 5px; background-color: #f2dedf; font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center;overflow:hidden;" >
+            View other members only after you reach the venue <br> (Click I am here button to notify)
         </div>
-        {% for user in users %}
-
-            {% if g.user['id'] != user[0] %}
-            <div style="display: flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap: 50px">
-                <div style="min-width: 400px; margin:auto;">
-                    {% if user[-1] %}
-                    <img class="team-card__img blur"
-                        style="border-radius: 50%; width: 150px; height:150px"    
-                        src="{{user[-1]}}"
-                        alt="Photo not available" />
-                    {% else %}
-                    <img class="team-card__img blur"
-                        style="border-radius: 50%; width: 150px; height:150px"    
-                        src="{{url_for('static', filename='images/per.svg')}}"
-                        alt="Photo not available" />
-                    {% endif %}
-                </div>
-                <div style="min-width: 400px; margin:auto;">
-                    <hgroup class="team-card__intro" style="text-align: left;">
-                        <p class="team-card__title">Name:{{user[1]}}</p>
-                        <p class="team-card__title">Age:23</p>
-                        <p class="team-card__title">Gender: {{user[4]}}</p>
-                    </hgroup>
-                </div>
-                <div style="min-width: 400px; margin:auto;">
-                    {% if user[-2] == 1 %} 
-                    <p class="team-card__job-title">Coming</p>
-
-                    {% elif  user[-2] == 2 %}
-                    <p class="team-card__job-title" style="color:green;">Arrived</p>
-                    {% else %}
-                    <p class="team-card__job-title" style="color:red;">Cancelled</p>
-                    {% endif %}
-                </div>
-            </div>
-            {% endif %}
-        {% endfor %}
-
-    </div> -->
-    <!-- <div class="main__cards" style="gap: 20px; width: max(300px,50%); display: flex; flex-wrap:wrap; margin-top:10px;">
-        <article class="team-card">
-            {% if g.user['img'] != None %}
-            <div class="team-card__img-box "><img class="team-card__img blur" src="{{g.user['img']}}"
-                    alt="Photo not available" /></div>
-            {% else %}
-
-            <div class="team-card__img-box">
-                <div class="upload-btn-wrapper">
-                    <img id="img" height="150">
-                    <button class="btn">Upload your photo <br> to see others</button>
-                    <input id="inp" type="file" />
-                </div>
-            </div>
-            {% endif %}
-            <div class="team-card__content" style="line-height: normal;">
-                <hgroup class="team-card__intro">
-                    <p class="team-card__title">{{g.user['name']}}</p>
-                    <p class="team-card__title">23, {{g.user['gender']}}</p>
-                    <p class="team-card__title">{{g.user['college']}}</p>
-                </hgroup>
-                {% if g.user['status'] == 1 %}
-                <div style="margin-bottom: 10px;">
-                    <a style="color: green; width: 40%; margin:auto" href="/status/2" class="btn">I'm here</a>
-                    <a style="width: 40%; margin:auto" href="/status/3" class="btn">Cancel</a>
-                </div>
-
-                {% elif g.user['status'] == 2 %}
-
-                <div style="margin-bottom: 10px;">
-                    <p class="team-card__job-title" style="color:green; font-size:larger"><strong>Arrived</strong> </p>
-                    <a style="width: 40%; margin:auto" href="/status/3" class="btn">Cancel</a>
-                </div>
-                {% else %}
-                <p class="team-card__job-title" style="color:red; width: 60%; font-size:larger">
-                    <strong>Cancelled</strong> </p>
-                {% endif %}
-
-            </div>
-        </article>
-        {% for user in users %}
-        {% if g.user['id'] != user[0] %}
-        <article class="team-card">
-            {% if user[-1] %}
-            <div class="team-card__img-box "><img class="team-card__img blur" src="{{user[-1]}}"
-                    alt="Photo not available" /></div>
-            {% else %}
-
-            <div class="team-card__img-box"><img class="team-card__img blur"
-                    src="{{url_for('static', filename='images/per.svg')}}" alt="" /></div>
-            {% endif %}
-            <div class="team-card__content">
-                <hgroup class="team-card__intro">
-                    <p class="team-card__title">{{user[1]}}</p>
-                    <p class="team-card__title">23, {{user[4]}}</p>
-                    <p class="team-card__title">{{user[5]}}</p>
-                    {% if user[-2] == 1 %}
-                    <p class="team-card__job-title" style="font-size:larger"><strong>Coming</strong> </p>
-                    {% elif user[-2] == 2 %}
-                    <p class="team-card__job-title" style="color:green; font-size:larger"><strong>Arrived</strong> </p>
-                    {% else %}
-                    <p class="team-card__job-title" style="color:red; font-size:larger"><strong>Cancelled</strong> </p>
-                    {% endif %}
-                </hgroup>
-            </div>
-        </article>
-        {% endif %}
-        {% endfor %}
-    </div> -->
-    
+        
+    </div>
+    <div id="warning2" style=" width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
+        
+        <div style="padding: 5px; background-color: #f2dedf;  font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
+            'I am here'  button will be active at <span id="hr">20</span>h:<span id="min">00</span>m:<span id="sec">00</span>s
+        </div>
+        
+    </div>
+    {% if g.user['img'] == None %}
+    <div id="warnings" style=" width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
+        
+        <div style=" padding: 5px;background-color: #f2dedf; border: solid 1px #a36062; font-size:max( 12px,1.1vw);background-color: #f2dedf; border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
+            Upload your photo first, to see pictures of other members
+        </div>
+        
+    </div>
+    {% endif %}
     <div style="display:flex; justify-content:center; width:max(70%,400px) ; gap: 100px">
-        <div style="display:flex; flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
+        <div class="o" id="default" style=" flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
             
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 {% if g.user['img'] != None %}
@@ -545,8 +432,8 @@
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
-                    <img id="img" height="150">
-                    <button class="wbtn" style="font-size: small;">Upload photo <br> to see others</button>
+                    <img class="dd-none" id="img" height="150">
+                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload photo</button>
                     <input id="inp" type="file" accept="image/*"/>
                 </div>
                 {% endif %}
@@ -554,7 +441,7 @@
                     <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
                     <div>         
                         <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
-                        <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
+                        <button style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn" disabled>I'm here</button>
                     </div>
                 </div>
             </div>
@@ -572,20 +459,21 @@
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1]}}</h2></div>
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">************</h2></div>
                     <div>
                         {% if user[-2] == 1 %}
-                        <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">coming</p>
+                        <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
                         {% elif user[-2] == 2 %}
-                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger; font-size:max(20px,1.2vw)">arrived </p>
+                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger; font-size:max(20px,1.2vw)">Arrived </p>
                         {% else %}
-                        <p class="team-card__job-title" style="color:red; font-size:larger; font-size:max(20px,1.2vw)">cancelled</p>
+                        <p class="team-card__job-title" style="color:red; font-size:larger; font-size:max(20px,1.2vw)">Cancelled</p>
                         {% endif %}
                     </div>
                 </div>
             </div>
             {% endif %}
             {% endfor %}
+
             {% if np==1 %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
@@ -641,6 +529,114 @@
             </div>
             {% endif %}
         </div>
+
+        <div class="o" id="time" style=" flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
+            
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                {% if g.user['img'] != None %}
+                <div style="width: 100px;">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
+                </div>
+                {% else %}
+                <div class="upload-btn-wrapper">
+                    <img class="dd-none" id="img" height="150">
+                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload photo</button>
+                    <input id="inp1" type="file" accept="image/*"/>
+                </div>
+                {% endif %}
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
+                    <div>         
+                        <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
+                        <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
+                    </div>
+                </div>
+            </div>
+            
+            {% for user in users %}
+            {% if g.user['id'] != user[0] %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center">
+                {% if user[-1] %}
+                <div style="width: 100px;">
+                    <img class="blur" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
+                </div>
+                {% else %}
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                {% endif %}
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1]}}</h2></div>
+                    <div>
+                        {% if user[-2] == 1 %}
+                        <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
+                        {% elif user[-2] == 2 %}
+                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger; font-size:max(20px,1.2vw)">Arrived </p>
+                        {% else %}
+                        <p class="team-card__job-title" style="color:red; font-size:larger; font-size:max(20px,1.2vw)">Cancelled</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            {% if np==1 %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            {% endif %}
+            {% if np==2 %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            {% endif %}
+            {% if np==3 %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    
     </div>
 
 
@@ -658,6 +654,20 @@
 
 
 <script>
+
+
+    var d = new Date(); // for now
+    h = d.getHours();
+    console.log(h)
+    if(h == 15){
+        document.getElementById('default').classList.add('dd-none')
+        document.getElementById('warning1').classList.add('dd-none')
+        document.getElementById('warning2').classList.add('dd-none')
+    }
+    else{
+        document.getElementById('time').classList.add('dd-none')
+    }
+
     document.getElementById("navlist").style.top = "0";
 
     function readFile() {
@@ -691,6 +701,7 @@
     }
 
     document.querySelector("#inp").addEventListener("change", readFile);
+    document.querySelector("#inp1").addEventListener("change", readFile);
 </script>
 
 {% endblock %}
