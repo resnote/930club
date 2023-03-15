@@ -96,13 +96,13 @@ def create_app(test_config=None):
             return redirect(url_for('status'))
 
             
-        users = db_fetch('SELECT * FROM  cult WHERE tble=%s', (g.user['tble'],))
+        users = db_fetch('SELECT * FROM  `cult` WHERE `tble`=%s', (g.user['tble'],))
         if g.user['tble']==0:
             db_connection = get_db()
             db = db_connection.cursor()
             db.execute("SELECT MAX(tble) AS max FROM cult")
             max = db.fetchall()
-            user = db_fetch('SELECT * FROM  cult WHERE tble=%s', (max[0][0],))
+            user = db_fetch('SELECT * FROM  `cult` WHERE `tble`=%s', (max[0][0],))
             print(len(user))
             if len(user)>4:
                 tle = max[0][0] + 1
@@ -142,13 +142,13 @@ def create_app(test_config=None):
             return redirect(url_for('status'))
 
             
-        users = db_fetch('SELECT * FROM  cult WHERE tble=%s', (g.user['tble'],))
+        users = db_fetch('SELECT * FROM  `cult` WHERE `tble`=%s', (g.user['tble'],))
         if g.user['tble']==0:
             db_connection = get_db()
             db = db_connection.cursor()
             db.execute("SELECT MAX(tble) AS max FROM cult")
             max = db.fetchall()
-            user = db_fetch('SELECT * FROM  cult WHERE tble=%s', (max[0][0],))
+            user = db_fetch('SELECT * FROM  `cult` WHERE `tble`=%s', (max[0][0],))
             print(len(user))
             if len(user)>4:
                 tle = max[0][0] + 1
