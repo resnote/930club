@@ -85,12 +85,24 @@ def create_app(test_config=None):
         if g.user['form']==1:
             return redirect(url_for('form1'))
         
-        if not g.user['tble']=='0':    
+        if request.method=='POST':
+            user_id = g.user['id']
+            img = request.form['img']
+            
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `cult` SET `img`=%s WHERE `id`=%s",(img, user_id))
+            db_connection.commit()
+            return redirect(url_for('status'))
+
+            
+        users = db_fetch('SELECT * FROM  cult WHERE tble=%s', (g.user['tble'],))
+        if g.user['tble']==0:
             db_connection = get_db()
             db = db_connection.cursor()
             db.execute("SELECT MAX(tble) AS max FROM cult")
             max = db.fetchall()
-            user = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (max[0][0],))
+            user = db_fetch('SELECT * FROM  cult WHERE tble=%s', (max[0][0],))
             print(len(user))
             if len(user)>4:
                 tle = max[0][0] + 1
@@ -108,11 +120,9 @@ def create_app(test_config=None):
             db.execute("UPDATE `cult` SET `tble`=%s WHERE `id`=%s",(tle , g.user['id']))
             db.execute("UPDATE `cult` SET `status`=%s WHERE `id`=%s",(1 , g.user['id']))
             db_connection.commit()
-            return render_template(template, tle=tle, numppl=numppl)
-        else:
-            tle = g.user['tble']
-            numppl = len(db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (int(tle),)))
-            return render_template(template, tle=tle, numppl=numppl)
+            return redirect(url_for('status'))
+        # print(users)
+        return render_template(template, users=users, np=len(users))
         
     
     @app.route("/status", methods=('GET', 'POST'))
@@ -132,13 +142,13 @@ def create_app(test_config=None):
             return redirect(url_for('status'))
 
             
-        users = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (g.user['tble'],))
+        users = db_fetch('SELECT * FROM  cult WHERE tble=%s', (g.user['tble'],))
         if g.user['tble']==0:
             db_connection = get_db()
             db = db_connection.cursor()
             db.execute("SELECT MAX(tble) AS max FROM cult")
             max = db.fetchall()
-            user = db_fetch('SELECT * FROM  `cult` WHERE `tble` = %s', (max[0][0],))
+            user = db_fetch('SELECT * FROM  cult WHERE tble=%s', (max[0][0],))
             print(len(user))
             if len(user)>4:
                 tle = max[0][0] + 1
@@ -196,7 +206,7 @@ def create_app(test_config=None):
         # print(users)
         return redirect(url_for('status'))
             
-    @app.route("/thanks")
+    @app.route("/hi")
     @mobile_template('home/thanks.html')
     def thanks(template):
         if g.user:

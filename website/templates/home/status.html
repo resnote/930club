@@ -336,8 +336,8 @@
 {% if g.user['img']==None %}
 <style>
     .blur {
-        filter: blur(8px);
-        -webkit-filter: blur(8px);
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
     }
 
     .upload-btn-wrapper {
@@ -367,29 +367,29 @@
 
 
 <div class="form-cont"
-    style="margin-top:max(80px,10%); display: flex; justify-content:center; flex-direction:row; align-items:center">
-    <h1 style="color: black;">Your Chans Social event is scheduled for today</h1>
+    style="margin-top:max(80px,10%); display: flex; justify-content:center; flex-direction:row; align-items:center;">
+    <h2 style="color: black; font-size:max( 22px,2.5vw)">Your event is scheduled for today</h2>
 </div>
 <div
     style="display: flex; justify-content:center; flex-direction:row; align-items:center; text-align:left; flex-wrap:wrap">
     <div
         style="width: max(400px,40%); display: flex; justify-content:center; flex-direction:column; align-items:center; text-align:left">
 
-        <p style="margin-top: 5%; font-size:x-large">
+        <p style="margin-top: 5%; font-size:max( 18px,1.5vw); font-family: 'Karla', sans-serif;">
             Time: 8:30-9:00 PM <br>
             Venue: H5 Mess <br>
             Table No. : {{tle}} (Refer to the photo)</p>
     </div>
-    <div style="width: max(400px,60%);">
-        <img src="{{url_for('static', filename='images/mess.jpg')}}" style="margin-top: 50px; width:max(350px, 90%)"
+    <div style="width: max(400px,60%); display:flex; justify-content:center">
+        <img src="{{url_for('static', filename='images/mess.jpg')}}" style="margin-top: 50px; width:80%"
             class='img2' alt="">
     </div>
 
 </div>
 <div class="d-none"
-    style="margin-top: 100px;margin-bottom: 100px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+    style="margin-top: 100px;margin-bottom: 100px; display:flex; align-items:center; justify-content:center; flex-direction:column; font-size:max( 22px,2.5vw)">
     <div>
-        <h1>Who are you meeting today?</h1>
+        <h2 style="font-size:max( 22px,2.5vw); font-family: 'Karla', sans-serif;">Who are you meeting today?</h2>
     </div>
     <!-- <div style="display: flex; flex-direction:column; gap:20px">
         <div class="wrapper" style="display: flex; flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:center; gap: 50px">
@@ -534,8 +534,9 @@
         {% endif %}
         {% endfor %}
     </div> -->
-    <div style="display:flex; justify-content:center; width:max(50%,400px) ; gap: 100px">
-        <div style="display:flex; flex-wrap:wrap; flex-direction:row; gap: 50px">
+    
+    <div style="display:flex; justify-content:center; width:max(70%,400px) ; gap: 100px">
+        <div style="display:flex; flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
             
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 {% if g.user['img'] != None %}
@@ -546,49 +547,24 @@
                 <div class="upload-btn-wrapper">
                     <img id="img" height="150">
                     <button class="wbtn" style="font-size: small;">Upload photo <br> to see others</button>
-                    <input id="inp" type="file" />
+                    <input id="inp" type="file" accept="image/*"/>
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2>{{g.user['name']}}</h2></div>
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
                     <div>         
-                        <a style="width: 90px; margin:auto" href="/status/3" class="btn">Cancel</a>
-                        <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto" href="/status/2" class="btn">I'm here</a>
+                        <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
+                        <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
                     </div>
                 </div>
             </div>
-            {% if np==1 %}
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
-                <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
-                </div>
-                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2>To be assigned</h2></div>
-                </div>
-            </div>
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
-                <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
-                </div>
-                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2>To be assigned</h2></div>
-                </div>
-            </div>
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
-                <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
-                </div>
-                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2>To be assigned</h2></div>
-                </div>
-            </div>
-            {% endif %}
+            
             {% for user in users %}
             {% if g.user['id'] != user[0] %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center">
                 {% if user[-1] %}
                 <div style="width: 100px;">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
+                    <img class="blur" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
@@ -596,20 +572,74 @@
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2>{{user[1]}}</h2></div>
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1]}}</h2></div>
                     <div>
                         {% if user[-2] == 1 %}
-                        <p class="team-card__job-title" style="font-size:larger">coming</p>
+                        <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">coming</p>
                         {% elif user[-2] == 2 %}
-                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger">arrived </p>
+                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger; font-size:max(20px,1.2vw)">arrived </p>
                         {% else %}
-                        <p class="team-card__job-title" style="color:red; font-size:larger">cancelled</p>
+                        <p class="team-card__job-title" style="color:red; font-size:larger; font-size:max(20px,1.2vw)">cancelled</p>
                         {% endif %}
                     </div>
                 </div>
             </div>
             {% endif %}
             {% endfor %}
+            {% if np==1 %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            {% endif %}
+            {% if np==2 %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            {% endif %}
+            {% if np==3 %}
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+                <div class="upload-btn-wrapper">
+                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                </div>
+                <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
+                    <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 
