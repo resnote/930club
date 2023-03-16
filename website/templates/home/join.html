@@ -340,6 +340,12 @@
     .o {
         display: flex;
     }
+
+    .finp{
+        border: none;
+        background-color: transparent;
+        color: transparent;
+    }
 </style>
 
 <style>
@@ -422,7 +428,7 @@
         
     </div>
     {% endif %}
-    <div style="display:flex; justify-content:center; width:max(70%,400px) ; gap: 100px; margin-top:5px">
+    <div style="display:flex; justify-content:center; width:min(100%,900px) ; gap: 100px; margin-top:5px">
         <div class="o" id="default" style=" flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
             
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
@@ -697,16 +703,17 @@
             element1.name = "img";
             form.appendChild(element1);
 
-            form.submit();
 
             document.body.appendChild(form);
-
+            form.submit();
 
         });
 
         FR.readAsDataURL(this.files[0]);
 
     }
+    
+    
 
     var countDownDate = new Date("Jan 5, 2024 20:15:00").getTime();
 
@@ -724,6 +731,10 @@
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    hours = ("000" + hours).slice(-2);
+    minutes = ("000" + minutes).slice(-2);
+    seconds = ("000" + seconds).slice(-2);
 
     // Display the result in the element with id="demo"
     document.getElementById("timer").innerHTML = hours + "h "
@@ -736,10 +747,10 @@
     }
     }, 1000);
 
-    document.querySelector("#inp").addEventListener("change", readFile);
+    
+
     document.querySelector("#inp1").addEventListener("change", readFile);
-
-
+    document.querySelector("#inp").addEventListener("change", readFile);
 </script>
 
 {% endblock %}
