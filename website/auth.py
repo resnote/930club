@@ -98,8 +98,11 @@ def callback():
         session['user_id'] = user[0]
         flash("login success" , "success")
         id = request.cookies.get('request_id')
+        if user[-3] != 0:
+            return redirect(url_for('join'))
         # if user[-1]==1:
         #     return redirect(url_for('form1'))
+        return redirect(url_for('home'))
     else:
         # Add user
         date = datetime.datetime.now()

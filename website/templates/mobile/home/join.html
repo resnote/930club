@@ -399,7 +399,7 @@
         <p style="margin-top: 5%; font-size:max( 18px,1.5vw); font-family: 'Karla', sans-serif;">
             Time: 8:30-9:00 PM <br>
             Venue: H5 Mess <br>
-            Table: #{{g.user['tble']}} <span style="font-size: small; color:grey">(Refer to the photo)</span></p>
+            Table No. : {{g.user['tble']}} <span style="font-size: small; color:grey">(Refer to the photo)</span></p>
     </div>
     <div style="width: max(400px,60%); display:flex; justify-content:center">
         <img src="{{url_for('static', filename='images/mess.jpg')}}" style="margin-top: 50px; width:80%"
@@ -413,7 +413,7 @@
         <h2 style="font-size:max( 22px,2.5vw); font-family: 'Karla', sans-serif;">Who are you meeting today?</h2>
     </div>
     {% if g.user['status'] == 1 %}
-    <div id="warning1" style=" color:black; width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
+    <div id="warning1" style=" color:#fb0101; width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
         
         <div style="padding: 5px; background-color: #f2dedf; font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center;overflow:hidden;" >
             View other members only after you reach the venue <br> (Click I am here button to notify)
@@ -424,7 +424,7 @@
     <div id="warning1">
     </div>
     {% endif %}
-    <div id="warning2" class="dd-none" style=" color:black;  width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center; margin-top:2px" >
+    <div id="warning2" class="dd-none" style=" color:#fb0101;  width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center; margin-top:2px" >
         
         <div style="padding: 5px; background-color: #f2dedf;  font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
             'I am here'  button will be active in <span id="timer" style=" color:black; "></span>
@@ -432,7 +432,7 @@
         
     </div>
     {% if g.user['img'] == None %}
-    <div id="warnings" style=" color:black; margin-top:2px; width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
+    <div id="warnings" style=" color:#fb0101; margin-top:2px; width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center" >
         
         <div style=" padding: 5px;background-color: #f2dedf; border: solid 1px #a36062; font-size:max( 12px,1.1vw);background-color: #f2dedf; border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
             Upload your photo first, to see pictures of other members
@@ -440,10 +440,10 @@
         
     </div>
     {% endif %}
-    <div style="display:flex; justify-content:center; width:min(100%,900px) ; margin-top:5px">
-        <div class="o" id="default" style="width: 100%; flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
+    <div style="display:flex; justify-content:center; width:100%;margin-top:5px">
+        <div class="o" id="default" style="width: 100%; flex-wrap:wrap; flex-direction:coloumn; gap: 50px; justify-content:center;">
             
-            <div style="display:flex; flex-wrap:nowrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 {% if g.user['img'] != None %}
                 <div style="width: 100px;" class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
@@ -452,7 +452,7 @@
                 {% else %}
                 <div class="upload-btn-wrapper">
                     <img class="dd-none" id="img" height="150">
-                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload</button>
+                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload photo</button>
                     <input id="inp" type="file" accept="image/*"/>
                 </div>
                 {% endif %}
@@ -467,7 +467,7 @@
             
             {% for user in users %}
             {% if g.user['id'] != user[0] %}
-            <div style="display:flex; flex-wrap:nowrap; flex-direction:row; align-items:center;">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center">
                 {% if user[-1] %}
                 <div style="width: 100px;">
                     <img class="blur" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
@@ -478,7 +478,7 @@
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][0]}}******</h2></div>
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][:2]}}******</h2></div>
                     <div>
                         {% if user[-2] == 1 %}
                         <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
@@ -550,7 +550,7 @@
         </div>
 
         {% if g.user['status'] == 1 %}
-        <div class="o" id="time" style="width: 100%; flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
+        <div class="o" id="time" style="width: 100%; flex-wrap:wrap; flex-direction:coloumn; gap: 50px; justify-content:center;">
             
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 {% if g.user['img'] != None %}
@@ -561,7 +561,7 @@
                 {% else %}
                 <div class="upload-btn-wrapper">
                     <img class="dd-none" id="img" height="150">
-                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload</button>
+                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload photo</button>
                     <input id="inp" type="file" accept="image/*"/>
                 </div>
                 {% endif %}
@@ -587,7 +587,7 @@
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][0]}}******</h2></div>
+                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][:2]}}******</h2></div>
                     <div>
                         {% if user[-2] == 1 %}
                         <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
@@ -659,7 +659,7 @@
         </div>
         
         {% else %}
-        <div class="o" id="time" style="width: 100vw; flex-wrap:wrap; flex-direction:row; gap: 50px; justify-content:center;">
+        <div class="o" id="time" style="width: 100vw; flex-wrap:wrap; flex-direction:coloumn; gap: 50px; justify-content:center;">
             
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 {% if g.user['img'] != None %}
@@ -670,7 +670,7 @@
                 {% else %}
                 <div class="upload-btn-wrapper">
                     <img class="dd-none" id="img" height="150">
-                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload</button>
+                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload photo</button>
                     <input id="inp1" type="file" accept="image/*"/>
                 </div>
                 {% endif %}
