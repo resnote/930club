@@ -1,0 +1,68 @@
+<!-- Inherits from base template -->
+{% extends "base.html" %}
+
+<!-- Page title -->
+{% block title %}ResNote{% endblock %}
+
+
+{% block content %}
+
+<section id='last' class="sec1">
+    
+
+    <p> Hope you've had a fun evening with your group😍. Could you help me understand how exactly you felt at your dinner? You can share your experience here. <br> <a href="https://forms.gle/9PThzELFZNEucoHf6"> https://forms.gle/9PThzELFZNEucoHf6 </a><br><br>
+
+        Keep coming in the future by clicking the button below, we'll keep a spot for you only for that day. <br><br> 
+        </p><br>
+        <a href="/status/1"  class="btn">Enter a Chans event again</a>
+    <hr style="width: 90%; height:3px; background-color:black; margin-top:5%">
+    
+    <div class="foot" style="display: flex; flex-direction:row;  justify-content: flex-start; width:90%;">
+        <div style="display: flex; flex-direction: column; margin-right: auto;">
+            <div>
+                © Chans. 2023
+            </div> <br>
+            <div style="display: inline-flex;">
+                <a href="https://twitter.com/ImpulseLabs_" target="_blank" class="social-icon w-inline-block">
+                    <div class="socialicon w-embed"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.1623 5.65593C21.3989 5.99362 20.5893 6.2154 19.7603 6.31393C20.634 5.79136 21.288 4.96894 21.6003 3.99993C20.7803 4.48793 19.8813 4.82993 18.9443 5.01493C18.3149 4.34151 17.4807 3.89489 16.5713 3.74451C15.6618 3.59413 14.7282 3.74842 13.9156 4.18338C13.1029 4.61834 12.4567 5.30961 12.0774 6.14972C11.6981 6.98983 11.607 7.93171 11.8183 8.82893C10.1554 8.74558 8.52863 8.31345 7.04358 7.56059C5.55854 6.80773 4.24842 5.75097 3.1983 4.45893C2.82659 5.09738 2.63125 5.82315 2.6323 6.56193C2.6323 8.01193 3.3703 9.29293 4.4923 10.0429C3.82831 10.022 3.17893 9.84271 2.5983 9.51993V9.57193C2.5985 10.5376 2.93267 11.4735 3.54414 12.221C4.15562 12.9684 5.00678 13.4814 5.9533 13.6729C5.33691 13.84 4.6906 13.8646 4.0633 13.7449C4.33016 14.5762 4.8503 15.3031 5.55089 15.824C6.25147 16.3449 7.09743 16.6337 7.9703 16.6499C7.10278 17.3313 6.10947 17.8349 5.04718 18.1321C3.98488 18.4293 2.87442 18.5142 1.7793 18.3819C3.69099 19.6114 5.91639 20.264 8.1893 20.2619C15.8823 20.2619 20.0893 13.8889 20.0893 8.36193C20.0893 8.18193 20.0843 7.99993 20.0763 7.82193C20.8952 7.23009 21.6019 6.49695 22.1633 5.65693L22.1623 5.65593Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/impulse_labs/" target="_blank" class="social-icon w-inline-block">
+                    <div class="socialicon w-embed"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7V7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9V9Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+        <div class="fill-remaining-space" style="justify-content: center;"></div>
+        <div class="right" style=" justify-content: flex-end;">
+            <a href="" style="margin-right: 20px;">Terms & Conditions</a>
+            <a href="">Privacy</a>
+        </div>
+    </div>
+
+    
+</section>
+
+<script>
+    window.onscroll = function () {
+        scroll()
+    };
+
+    function scroll() {
+        if (document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20) {
+            document.getElementById("navlist").style.top = "0";
+        }
+        else {
+            document.getElementById("navlist").style.top
+                = "-80px";
+        }
+    }
+</script>
+
+{% endblock %}

@@ -185,7 +185,7 @@ def create_app(test_config=None):
             db.close()
             
             # print(users)
-            return redirect(url_for('status'))
+            return redirect(url_for('join'))
         
         return redirect(url_for('join'))
     
@@ -228,6 +228,14 @@ def create_app(test_config=None):
     @app.route("/thanks2")
     @mobile_template('home/thanks2.html')
     def thanks2(template):
+        if g.user:
+            if not g.user['num']:
+                return redirect(url_for('form1'))
+        return render_template(template)
+    
+    @app.route("/feedback")
+    @mobile_template('home/feedback.html')
+    def feedback(template):
         if g.user:
             if not g.user['num']:
                 return redirect(url_for('form1'))

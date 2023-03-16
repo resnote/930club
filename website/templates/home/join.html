@@ -478,7 +478,13 @@
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][0]}}******</h2></div>
+                    <div>
+                        <h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][0]}}
+                        {% for i in user[1].split(' ')[0][1:] %}
+                        *
+                        {% endfor %}
+                        </h2>
+                    </div>
                     <div>
                         {% if user[-2] == 1 %}
                         <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
@@ -494,7 +500,7 @@
             {% endfor %}
 
             {% if np==1 %}
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center;">
                 <div class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
@@ -502,7 +508,7 @@
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
                 </div>
             </div>
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center;">
                 <div class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
@@ -510,7 +516,7 @@
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
                 </div>
             </div>
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center;">
                 <div class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
@@ -520,7 +526,7 @@
             </div>
             {% endif %}
             {% if np==2 %}
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; ">
                 <div class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
@@ -528,7 +534,7 @@
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
                 </div>
             </div>
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; ">
                 <div class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
@@ -538,7 +544,7 @@
             </div>
             {% endif %}
             {% if np==3 %}
-            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
+            <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; ">
                 <div class="upload-btn-wrapper">
                     <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
@@ -569,7 +575,11 @@
                     <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
                     <div>         
                         <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
+                        {% if g.user['status'] == 1 %}
                         <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
+                        {% else %}
+                        <p style=" color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" >I'm here</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -587,12 +597,18 @@
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
-                    <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][0]}}******</h2></div>
+                    <div>
+                        <h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{user[1][0]}}
+                            {% for i in user[1].split(' ')[0][1:] %}
+                            *
+                            {% endfor %}
+                        </h2>
+                    </div>
                     <div>
                         {% if user[-2] == 1 %}
                         <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
                         {% elif user[-2] == 2 %}
-                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger; font-size:max(20px,1.2vw)">Arrived </p>
+                        <p class="team-card__job-title" style="color:green; font-size:larger; font-size:max(20px,1.2vw)">Arrived </p>
                         {% else %}
                         <p class="team-card__job-title" style="color:red; font-size:larger; font-size:max(20px,1.2vw)">Cancelled</p>
                         {% endif %}
@@ -678,7 +694,11 @@
                     <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
                     <div>         
                         <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
+                        {% if g.user['status'] == 1 %}
                         <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
+                        {% else %}
+                        <p style=" color:green; width: 70px; margin:auto; font-size:max(16px,1.2vw)">I'm here</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -795,6 +815,9 @@
     if(h == 20){
         document.getElementById('default').classList.add('dd-none')
         document.getElementById('warning2').classList.add('dd-none')
+    }
+    else if(h > 21){
+        window.location.replace("https://chance.social/feedback");
     }
     else{
         document.getElementById('time').classList.add('dd-none')
