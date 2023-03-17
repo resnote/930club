@@ -76,7 +76,7 @@ def create_app(test_config=None):
         return render_template(template)
     
     @app.route("/join", methods=('GET', 'POST'))
-    @mobile_template('{mobile/}home/join.html')
+    @mobile_template('home/join.html')
     def join(template):
 
         if not g.user:
