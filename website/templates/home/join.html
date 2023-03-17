@@ -489,7 +489,7 @@
                         {% if user[-2] == 1 %}
                         <p class="team-card__job-title" style="font-size:larger; font-size:max(20px,1.2vw)">Coming</p>
                         {% elif user[-2] == 2 %}
-                        <p class="team-card__job-title" style="background-color:green; color:white; font-size:larger; font-size:max(20px,1.2vw)">Arrived </p>
+                        <p class="team-card__job-title" style="color:green; font-size:larger; font-size:max(20px,1.2vw)">Arrived </p>
                         {% else %}
                         <p class="team-card__job-title" style="color:red; font-size:larger; font-size:max(20px,1.2vw)">Cancelled</p>
                         {% endif %}
@@ -574,8 +574,9 @@
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
                     <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
                     <div>         
-                        <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
+                        
                         {% if g.user['status'] == 1 %}
+                        <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
                         <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
                         {% else %}
                         <p style=" color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" >I'm here</p>
@@ -693,8 +694,9 @@
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
                     <div><h2 style="font-size:max(20px,1.5vw); font-family: 'Karla', sans-serif;">{{g.user['name']}}</h2></div>
                     <div>         
-                        <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
+                        
                         {% if g.user['status'] == 1 %}
+                        <a style="width: 90px; margin:auto; font-size:max(16px,1.2vw) " href="/status/3" class="btn">Cancel</a>
                         <a style="background-color: green; color:#fff; border-color:green; width: 90px; margin:auto; font-size:max(16px,1.2vw)" href="/status/2" class="btn">I'm here</a>
                         {% else %}
                         <p style=" color:green; width: 70px; margin:auto; font-size:max(16px,1.2vw)">I'm here</p>
@@ -812,7 +814,7 @@
     var d = new Date(); // for now
     h = d.getHours();
     console.log(h)
-    if(h == 20){
+    if(h < 20){
         document.getElementById('default').classList.add('dd-none')
         document.getElementById('warning2').classList.add('dd-none')
     }
