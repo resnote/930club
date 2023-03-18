@@ -126,7 +126,7 @@ def create_app(test_config=None):
         return render_template(template, users=users, np=len(users))
         
     @app.route("/waitlist")
-    @mobile_template('home/wait.html')
+    @mobile_template('home/waitlist.html')
     def wait(template):
         if g.user:
             if not g.user['num']:
