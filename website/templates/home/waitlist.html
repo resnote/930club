@@ -7,8 +7,21 @@
 
 {% block content %}
 
-<section id='last' class="sec1">
+<style>
+    .dd-none{
+        display: none !important; 
+    }
+</style>
 
+
+<section id='last' class="sec1">
+    <div id="warning2" class="dd-none" style="position:fixed; top:0; margin-top: 20px; color:black;  width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center; margin-top:2px" >
+        
+        <div style="padding: 5px; background-color: #f2dedf;  font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
+            'check status' button will be active in <span id="timer" style=" color:black; "></span>
+        </div>
+        
+    </div>
     
 
     <p>Thanks for joining the event. We will mail the details of the event by 6:00PM.</p><br>
@@ -16,7 +29,7 @@
     {% if g.user['tble'] %}
     <a href="/join" target="_blank" class="btn">Check status</a>
     {% else %}
-    <button class="btn" disabled>Check status</button>
+    <button class="btn" onclick="show()" style="cursor: not-allowed;">Check status</button>
     {% endif %}
 
     <hr style="width: 90%; height:3px; background-color:black; margin-top:5%">
@@ -67,6 +80,42 @@
                 = "-80px";
         }
     }
+
+    function show(){
+        document.getElementById('warning2').classList.remove('dd-none')
+     }
+
+     var countDownDate = new Date("Jan 5, 2024 18:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    hours = ("000" + hours).slice(-2);
+    minutes = ("000" + minutes).slice(-2);
+    seconds = ("000" + seconds).slice(-2);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("timer").innerHTML = hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+    }, 1000);
 </script>
 
 {% endblock %}
