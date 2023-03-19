@@ -82,6 +82,9 @@ def create_app(test_config=None):
         if not g.user:
             return redirect(url_for('auth.google_login'))
         
+        if g.user['verification'] == 0:
+            return redirect(url_for('verify'))
+        
         if g.user['form']==1:
             return redirect(url_for('form1'))
         
@@ -128,6 +131,14 @@ def create_app(test_config=None):
     @app.route("/waitlist")
     @mobile_template('home/waitlist.html')
     def wait(template):
+        if g.user:
+            if not g.user['num']:
+                return redirect(url_for('form1'))
+        return render_template(template)
+    
+    @app.route("/verify")
+    @mobile_template('home/verify.html')
+    def verify(template):
         if g.user:
             if not g.user['num']:
                 return redirect(url_for('form1'))
