@@ -13,7 +13,7 @@
     {% if not g.user %}
     <a class="btn" href="/googleLogin">Experience today</a>
     {% else %}
-        {% if g.user['status'] == 0 %}
+        {% if g.user['verification'] == 0 %}
         <a href="https://wa.me/918249069736?text=Hi" target="_blank" class="btn">Send us 'Hi' now</a>
         {% else %}
         <a href="/join" target="_blank" class="btn">Experience again today</a>
