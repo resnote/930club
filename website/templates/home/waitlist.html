@@ -18,14 +18,14 @@
     <div id="warning2" class="dd-none" style="position:fixed; top:0; margin-top: 20px; color:black;  width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center; margin-top:2px" >
         
         <div style="padding: 5px; background-color: #f2dedf;  font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
-            'check status' button will be active in <span id="timer" style=" color:black; "></span>
+            Making arrangements now, please wait max till <span id="timer" style=" color:black; "></span>
         </div>
         
     </div>
     
-
-    <p>Thanks for joining the event. We will mail the details of the event by 6:00PM.</p><br>
-    <p>You can also check the status by clicking the button below.</p>
+    
+    <p>We have received your request to join today. Right now we are finding the best people and a table number for you. </p><br><br>
+    <p>We'll share the details over email as well before 7pm today (at max).</p>
     {% if g.user['tble'] %}
     <a href="/join" target="_blank" class="btn">Check status</a>
     {% else %}
@@ -85,7 +85,7 @@
         document.getElementById('warning2').classList.remove('dd-none')
      }
 
-     var countDownDate = new Date("Jan 5, 2024 18:00:00").getTime();
+     var countDownDate = new Date("Jan 5, 2024 19:00:00").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
