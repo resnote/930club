@@ -75,6 +75,27 @@ def create_app(test_config=None):
             return redirect(url_for('join'))
         return render_template(template)
     
+    @app.route("/profile", methods=('GET', 'POST'))
+    @mobile_template('home/profile.html')
+    def profile(template):
+
+        if not g.user:
+            return redirect(url_for('auth.google_login'))
+        if request.method=='POST':
+            user_id = g.user['id']
+            num = request.form['num']
+            gender = request.form['gender']
+            college = request.form['college']
+            insta = str(request.form['insta'])
+            img = request.form['imge']
+            
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s, `img`=%s WHERE `id`=%s",(num, gender, college, insta, img, user_id))
+            db_connection.commit()
+            return redirect(url_for("profile"))
+        return render_template(template)
+    
     @app.route("/join", methods=('GET', 'POST'))
     @mobile_template('home/join.html')
     def join(template):

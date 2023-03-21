@@ -82,7 +82,7 @@
 
     }
 
-    
+
 
     form .likert li label {
         width: 100%;
@@ -124,13 +124,15 @@
     }
 
 
+
     /*custom font*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+    @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 
     body {
         font-family: montserrat, arial, verdana;
     }
+
     /*form styles*/
     #msform {
         width: 400px;
@@ -138,6 +140,7 @@
         text-align: center;
         position: relative;
     }
+
     #msform fieldset {
         background: white;
         border: 0 none;
@@ -153,7 +156,9 @@
     }
 
     /*inputs*/
-    #msform input, select, #msform textarea {
+    #msform input,
+    select,
+    #msform textarea {
         padding: 15px;
         border: 1px solid #ccc;
         border-radius: 3px;
@@ -164,6 +169,7 @@
         color: #2C3E50;
         font-size: 13px;
     }
+
     /*buttons*/
     #msform .action-button {
         width: 100px;
@@ -175,12 +181,15 @@
         cursor: pointer;
         padding: 10px;
         margin: 10px 5px;
-    text-decoration: none;
-    font-size: 14px;
+        text-decoration: none;
+        font-size: 14px;
     }
-    #msform .action-button:hover, #msform .action-button:focus {
+
+    #msform .action-button:hover,
+    #msform .action-button:focus {
         box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
     }
+
     /*headings*/
     .fs-title {
         font-size: 15px;
@@ -188,76 +197,114 @@
         color: #2C3E50;
         margin-bottom: 10px;
     }
+
     .fs-subtitle {
         font-weight: normal;
         font-size: 13px;
         color: #666;
         margin-bottom: 20px;
     }
-    
-    .dd-none{
-        display:none;
+
+    .dd-none {
+        display: none;
+    }
+
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
     }
 
 
-
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
 </style>
 
 
-<div class="form-cont" style="margin-top:10%; display: flex; justify-content:center; flex-direction:column; align-items:center">
+<div class="form-cont"
+    style="z-index:0; margin-top:5%; display: flex; justify-content:center; flex-direction:column; align-items:center">
 
-        
-        <form id="msform" method="post">
-            <fieldset>
-              <h1 class="fs-title">Basic details</h1>
-              <h3 class="fs-subtitle">We don't show this to others</h3>
 
-              {% if g.user['img'] != None %}
-                <div style="width: 100px;" class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
-                    <input id="inp3" type="file" accept="image/*"/>
-                </div>
-                {% else %}
-                <div class="upload-btn-wrapper">
-                    <img class="dd-none" id="img" height="150">
-                    <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload</button>
-                    <input id="inp" type="file" accept="image/*"/>
-                </div>
-                {% endif %}
+    <form id="msform" method="post">
+        <fieldset>
+            <h1 class="fs-title">Basic details</h1>
+            <h3 class="fs-subtitle">We don't show this to others</h3>
 
-              <input type="text" name="num" placeholder="WhatsApp Number*" value="{{g.user['num']}}" required/>
-              {% if g.user['gender'] == 'male' %}
-              <select name="gender" id="gender" required>
+            {% if g.user['img'] != None %}
+            <div style="width: 100px;" class="upload-btn-wrapper">
+                <img width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
+                <input id="inp3" type="file" accept="image/*" />
+            </div>
+            {% else %}
+            <div class="upload-btn-wrapper">
+                <img id="img" width="100px" height="100px" style="border-radius: 50%;" alt=" Click to upload photo">
+                <input id="inp3" type="file" accept="image/*" />
+                <input id="inp" type="file" accept="image/*" />
+            </div>
+            {% endif %}
+
+            <input type="text" name="name" placeholder="Name" value="{{g.user['name']}}" required />
+
+            <input type="text" name="num" placeholder="WhatsApp Number*" value="{{g.user['num']}}" required />
+            {% if g.user['gender'] == 'male' %}
+            <select name="gender" id="gender" required>
                 <option value="gender" disabled selected>Gender*</option>
                 <option value="male" selected>Male</option>
                 <option value="female">Female</option>
                 <option value="non">Non binary</option>
-              </select>
-              {% endif %}
-              {% if g.user['gender'] == "female" %}
-              <select name="gender" id="gender" required>
+            </select>
+            {% endif %}
+            {% if g.user['gender'] == "female" %}
+            <select name="gender" id="gender" required>
                 <option value="gender" disabled selected>Gender*</option>
-                <option value="male" >Male</option>
+                <option value="male">Male</option>
                 <option value="female" selected>Female</option>
                 <option value="non">Non binary</option>
-              </select>
-              {% endif %}
-              {% if g.user['gender'] == "non" %}
-              <select name="gender" id="gender" required>
+            </select>
+            {% endif %}
+            {% if g.user['gender'] == "non" %}
+            <select name="gender" id="gender" required>
                 <option value="gender" disabled selected>Gender*</option>
-                <option value="male" >Male</option>
+                <option value="male">Male</option>
                 <option value="female" selected>Female</option>
                 <option value="non" selected>Non binary</option>
-              </select>
-              {% endif %}
-              <input class="dd-none" type="text" name="imge" placeholder="College*" value="{{g.user['img']}}" required/>
-              <input type="text" name="college" placeholder="College*" value="{{g.user['college']}}" required/>
-              <input type="text" name="insta" placeholder="Birthday" value="{{g.user['insta']}}" onfocus="(this.type='date')" onblur="(this.type='text')"/>
-              <button class="submit action-button" target="_top">Save</button>
-            </fieldset>
-          </form>
+            </select>
+            {% endif %}
+            <input class="dd-none" id="imge" type="text" name="imge" placeholder="College*" value="{{g.user['img']}}"
+                required />
+            <input type="text" name="college" placeholder="College*" value="{{g.user['college']}}" required />
+            <input type="text" name="insta" placeholder="Birthday" value="{{g.user['insta']}}"
+                onfocus="(this.type='date')" onblur="(this.type='text')" />
+            <button class="submit action-button" target="_top">Save</button>
+        </fieldset>
+    </form>
 </div>
 
+<div style="margin-top:14%; margin-bottom:14%;display: flex; justify-content:center; flex-direction:column; align-items:center">
+    <h2>Upcoming Events</h2>
+    <div
+        style="display: flex; justify-content:center; flex-direction:row; align-items:center; text-align:left; flex-wrap:wrap">
+        <div
+            style="width: max(400px,40%); display: flex; justify-content:center; flex-direction:column; align-items:center; text-align:left">
+
+            <p style="margin-top: 5%; font-size:max( 18px,1.5vw); font-family: 'Karla', sans-serif;">
+                Starts in: <span id="dt"></span><br>
+                Venue: H5 Mess (IISER Mohali)<br> <br>
+                <a href="/join" class="btn" style="font-size: small; margin-left:30%;">Join now</a>
+            </p>
+        </div>
+        <div style="width: max(400px,60%); display:flex; justify-content:center">
+            <img src="{{url_for('static', filename='images/mess.jpg')}}" style="margin-top: 50px; width:80%"
+                class='img2' alt="">
+        </div>
+
+    </div>
+</div>
 
 <script>
     document.getElementById("navlist").style.top = "0";
@@ -271,32 +318,58 @@
         FR.addEventListener("load", function (evt) {
 
             val = evt.target.result;
-            if(val.length * (3/4) > 1000000){
+            if (val.length * (3 / 4) > 1000000) {
                 alert('file size must be less than 1MB')
                 return;
-                
+
             }
-            console.log(x = (val.length * (3/4)))
+            console.log(x = (val.length * (3 / 4)))
 
-            var form = document.createElement("form");
-            var element1 = document.createElement("input");
-
-            form.method = "POST";
-
-            element1.value = val;
-            element1.classList.add('dd-none')
-            element1.name = "img";
-            form.appendChild(element1);
-
-
-            document.body.appendChild(form);
-            form.submit();
+            document.getElementById("img").src = val;
+            document.getElementById("imge").value = val;
 
         });
 
         FR.readAsDataURL(this.files[0]);
 
     }
+
+    var numInputs = document.querySelectorAll('input[type=file]');
+    for (var i = 0; i < numInputs.length; i++) {
+        numInputs[i].addEventListener("change", readFile);
+    }
+
+    var countDownDate = new Date("Jan 5, 2024 20:30:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        hours = ("000" + hours).slice(-2);
+        minutes = ("000" + minutes).slice(-2);
+        seconds = ("000" + seconds).slice(-2);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("dt").innerHTML = hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);
 </script>
 
 {% endblock %}
