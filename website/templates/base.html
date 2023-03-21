@@ -191,7 +191,7 @@
             {% if not g.user %}
             <a href="/googleLogin">Login</a>
             {% else %}
-            <a href="">{{g.user['name']}}</a>
+            <a href="/profile">{{g.user['name']}}</a>
             {% endif %}
         </div>
 
