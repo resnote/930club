@@ -402,12 +402,12 @@
             Table: #{{g.user['tble']}} <span style="font-size: small; color:grey">(Refer to the photo)</span></p>
     </div>
     <div style="width: max(400px,60%); display:flex; justify-content:center">
-        <img src="{{url_for('static', filename='images/mess.jpg')}}" style="margin-top: 50px; width:80%"
+        <img data-enlargeable src="{{url_for('static', filename='images/mess.jpg')}}" style="margin-top: 50px; width:80%"
             class='img2' alt="">
     </div>
 
 </div>
-<div class=""
+<div onload="getPics()" class="gallery"
     style="margin-top: 100px;margin-bottom: 100px; display:flex; align-items:center; justify-content:center; flex-direction:column; font-size:max( 22px,2.5vw)">
     <div>
         <h2 style="font-size:max( 22px,2.5vw); font-family: 'Karla', sans-serif;">Who are you meeting today?</h2>
@@ -446,12 +446,12 @@
             <div style="display:flex; flex-wrap:nowrap; flex-direction:row;align-items:center; margin-top: 30px">
                 {% if g.user['img'] != None %}
                 <div style="width: 100px;" class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
                     <input id="inp3" type="file" accept="image/*"/>
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
-                    <img class="dd-none" id="img" height="150">
+                    <img data-enlargeable class="dd-none" id="img" height="150">
                     <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload</button>
                     <input id="inp" type="file" accept="image/*"/>
                 </div>
@@ -470,11 +470,11 @@
             <div style="display:flex; flex-wrap:nowrap; flex-direction:row; align-items:center;">
                 {% if user[-1] %}
                 <div style="width: 100px;">
-                    <img class="blur" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
+                    <img data-enlargeable class="blur" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
@@ -502,7 +502,7 @@
             {% if np==1 %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center;">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -510,7 +510,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center;">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -518,7 +518,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center;">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -594,7 +594,7 @@
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
@@ -622,7 +622,7 @@
             {% if np==1 %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -630,7 +630,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -638,7 +638,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -656,7 +656,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -666,7 +666,7 @@
             {% if np==3 %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -686,7 +686,7 @@
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
-                    <img class="dd-none" id="img" height="150">
+                    <img data-enlargeable class="dd-none" id="img" height="150">
                     <button class="wbtn" style="font-size: small; color:#fff; background-color:black;">Click to <br> upload</button>
                     <input id="inp1" type="file" accept="image/*"/>
                 </div>
@@ -710,11 +710,11 @@
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center">
                 {% if user[-1] %}
                 <div style="width: 100px;">
-                    <img class="blur1" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
+                    <img data-enlargeable class="blur1" width="100px" height="100px" style="border-radius: 50%;" src="{{user[-1]}}" alt="">
                 </div>
                 {% else %}
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 {% endif %}
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px">
@@ -736,7 +736,7 @@
             {% if np==1 %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -744,7 +744,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -752,7 +752,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -770,7 +770,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -780,7 +780,7 @@
             {% if np==3 %}
             <div style="display:flex; flex-wrap:wrap; flex-direction:row;align-items:center; margin-top: 30px">
                 <div class="upload-btn-wrapper">
-                    <img width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
+                    <img data-enlargeable width="100px" height="100px" style="border-radius: 50%;" src="{{url_for('static', filename='images/per.svg')}}" alt="">
                 </div>
                 <div style="display: flex; flex-direction:column; width:200px; margin-left:20px; ">
                     <div><h2 style="font-size:max(20px,1.2vw)">To be assigned</h2></div>
@@ -792,6 +792,7 @@
         <div style="height: 10px">
 
         </div>
+        <div id="fullpage" onclick="this.style.display='none';"></div>
     </div>
 
 
@@ -806,7 +807,7 @@
 
 
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <script>
 
@@ -904,7 +905,36 @@
     }
      function show(){
         document.getElementById('warning2').classList.remove('dd-none')
-     }
-</script>
+     };
 
+     $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+        var src = $(this).attr('src');
+        var modal;
+      
+        function removeModal() {
+          modal.remove();
+          $('body').off('keyup.modal-close');
+        }
+        modal = $('<div>').css({
+          background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+          backgroundSize: 'contain',
+          width: '100%',
+          height: '100%',
+          position: 'fixed',
+          zIndex: '10000',
+          top: '0',
+          left: '0',
+          cursor: 'zoom-out'
+        }).click(function() {
+          removeModal();
+        }).appendTo('body');
+        //handling ESC
+        $('body').on('keyup.modal-close', function(e) {
+          if (e.key === 'Escape') {
+            removeModal();
+          }
+        });
+      });
+</script>
+<script defer src="https://cdn.crop.guide/loader/l.js?c=GPPTFR"></script>
 {% endblock %}

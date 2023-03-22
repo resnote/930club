@@ -237,7 +237,7 @@
 
             {% if g.user['img'] != None %}
             <div style="width: 100px;" class="upload-btn-wrapper">
-                <img width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
+                <img id="img" width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
                 <input id="inp3" type="file" accept="image/*" />
             </div>
             {% else %}
@@ -305,7 +305,7 @@
 
     </div>
 </div>
-
+<script defer src="https://cdn.crop.guide/loader/l.js?c=GPPTFR"></script>
 <script>
     document.getElementById("navlist").style.top = "0";
 
