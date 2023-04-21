@@ -29,7 +29,7 @@ GOOGLE_CLIENT_ID ="428722172324-dcqj9kqu41c32lq34k7a98qtr4uaskpv.apps.googleuser
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="https://chans.social/callback"
+    redirect_uri="http://localhost:5000/callback"
 )
 
 
@@ -80,7 +80,7 @@ def callback():
     request_session = requests.session()
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session=cached_session)
-    # time.sleep(5)
+    time.sleep(5)
     id_info = id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=token_request,
@@ -92,25 +92,23 @@ def callback():
     email = id_info['email']
     password = id_info['sub']
 
-    user = db_fetch('SELECT * FROM  `cult` WHERE `email`=%s', (email,), one=True)
+    user = db_fetch('SELECT * FROM  `chansprofile` WHERE `email`=%s', (email,), one=True)
     if user is not None:
         session.clear()
         session['user_id'] = user[0]
         flash("login success" , "success")
         id = request.cookies.get('request_id')
-        if user[-3] != 0:
-            return redirect(url_for('join'))
-        # if user[-1]==1:
-        #     return redirect(url_for('form1'))
-        return redirect(url_for('home'))
+        if user[-1]:
+            return redirect(url_for('form1'))
+        return redirect(url_for('wait'))
     else:
         # Add user
         date = datetime.datetime.now()
-        db_insert('INSERT INTO cult (name, email) VALUES (%s, %s)', (name, email))
+        db_insert('INSERT INTO chansprofile (name, email) VALUES (%s, %s)', (name, email))
         flash("Successfully created account", "info")
         # Auto-login
-        user = db_fetch('SELECT * FROM  `cult` WHERE `email` = %s', (email,), one=True)
+        user = db_fetch('SELECT * FROM  `chansprofile` WHERE `email` = %s', (email,), one=True)
         session.clear()
         session['user_id'] = user[0]
     flash('Your account has been created. Now you can login to the ResNote extension and start exploring!', 'info')
-    return redirect(url_for('thanks'))
+    return redirect(url_for('form1'))

@@ -131,6 +131,7 @@
 
     body {
         font-family: montserrat, arial, verdana;
+        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
     }
 
     /*form styles*/
@@ -234,7 +235,7 @@
         <fieldset>
             <h1 class="fs-title">Basic details</h1>
             <h3 class="fs-subtitle">We don't show this to others</h3>
-
+            
             {% if g.user['img'] != None %}
             <div style="width: 100px;" class="upload-btn-wrapper">
                 <img id="img" width="100px" height="100px" style="border-radius: 50%;" src="{{g.user['img']}}" alt="">
@@ -286,7 +287,8 @@
 </div>
 
 <div style="margin-top:14%; margin-bottom:14%;display: flex; justify-content:center; flex-direction:column; align-items:center">
-    <h2>Upcoming Events</h2>
+    <h2>Upcoming Events</h2><br>
+    <p>You have signed up for any event yet, But there are some events you might find interesting.</p>
     <div
         style="display: flex; justify-content:center; flex-direction:row; align-items:center; text-align:left; flex-wrap:wrap">
         <div

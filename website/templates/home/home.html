@@ -9,23 +9,15 @@
 <section class="sec1">
     <img src="{{url_for('static', filename='images/chan.png')}}" style="width: max(15%,100px); height:auto" class="img1" alt="">
     <img src="{{url_for('static', filename='images/frnds.png')}}" style="margin-top: 5px;" class='img2' alt="">
-    <h2>Socialize with new peer groups in real-life easily</h2>
-    {% if not g.user %}
+    <h2>Meet friends of your friends in real-life</h2>
     <a class="btn" href="/googleLogin">Experience today</a>
-    {% else %}
-        {% if g.user['verification'] == 0 %}
-        <a href="https://wa.me/918249069736?text=Hi" target="_blank" class="btn">Send us 'Hi' now</a>
-        {% else %}
-        <a href="/join" target="_blank" class="btn">Experience again today</a>
-        {% endif %}
-    {% endif %}
     <img alt="resume icon"
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAACXBIWXMAACxLAAAsSwGlPZapAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHnSURBVHgB7dzZjRpBFIbRPwSHUCE4BEJwBnQmdAgOYTIhBIdACISAKY2QHzxo6IWlinOk+wy3PrG0UJMAAAAAAAAAAAAAAAAAAAAAAADAe9ucZ3+e43lO5/lznm36t8vnrnXnuns9g+72rkuerkxd/kf6U3e6hP1qdunEkOtL9hr5u7iX2aQD9S3plNsil7Sv5La4dfbpwGnCHNJ25JLPHW7d95gOXL5U9R65ZFrcyzRvn+lLtxa5ZF7cfTqwyfTFW4pcMi9unW06MabPyCXz447pzJi+IpeI+58xfUQuEfeqMW1HLhH3W2PmR/6Z56mPPfWy7+3iXoyZd1D1gJ8RWdwZhrQReUncIW9uyGtHFncFQ+ZH/pX72UTc1QyZd5B1tlnfdsHzGcKXNpn/ilkz8ty4x3TyG+89LfnMWyPykrjPvIRryrMii/tASyLvMt0u4j5cPbhD7h95btxDxF2s5L6Rl8QtYRUl94ks7gspWTeyuC+oZJ3I4r6wkmWRxW1AyfzI4jai5DGRxX2ikvtGFvcFlNx+L9CU6eVeqS7cejfflLg93tLatLUii/vClkYWtwE10D7T4+4jblM+cnvcj9Ckj4jbvd8Rt3tD/n0ud/tXRgAAAAAAAAAAAAAAAAAAAAAAANCKv/gksbXkvvpDAAAAAElFTkSuQmCC"
         class="arw">
 </section>
 
 <div class="sec2 sec">
-    <h1 style="color: black;">Choose your peers 🤙.</h1>
+    <h1 style="color: black;">Choose your peers 🤙</h1>
     <p>Select those faces that you see frequently or can at least trust.</p>
 </div>
 <div class="sec2 sec">
@@ -38,7 +30,7 @@
 </div>
 <section class="sec1">
 
-    <h2 style="padding: 10px;">Nothing is random</h2>
+    <h2 style="padding: 10px;">They will bring their friends, not strangers</h2>
     <p style="margin-top: -10;">
         Just by chance, or by Chans😌
         </p>
@@ -55,12 +47,15 @@
     <h1 style="color: black;"> But faaar more interesting🤯</h1>
     <p> Because of the variety of people you will meet every single time.</p>
 </div>
+<div class="sec2 sec">
+    <h1 style="color: black;"> Plus safe </h1>
+    <p> Because of the small group in a vetted public place😂</p>
+</div>
 <section id='last' class="sec1">
 
-    <h2>Btw it's for peer groups, not date 😂</h2>
-    <p  style="margin-top: -10;">That too in a vetted public place</p>
-    <p>Coz when safety is 100, fun becomes ♾️  </p>
-    <a class="btn" href="/googleLogin">Enter our cult</a>
+    <h2>No messaging at all⌨️</h2>
+    <p>Only easy socializing in real-life</p>
+    <a class="btn" href="/googleLogin">Find your cult👋</a>
     <hr style="width: 90%; height:3px; background-color:black">
     
     <div class="foot" style="display: flex; flex-direction:row;  justify-content: flex-start; width:90%">

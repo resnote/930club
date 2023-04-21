@@ -15,24 +15,21 @@
 
 
 <section id='last' class="sec1">
-    <div id="warning2" class="dd-none" style="position:fixed; top:0; margin-top: 20px; color:black;  width:100%; text-align:center;overflow:hidden;display:flex; justify-content:center; margin-top:2px" >
-        
-        <div style="padding: 5px; background-color: #f2dedf;  font-size:max( 12px,1.1vw); border: solid 1px #a36062; width: min(500px, 100%); text-align:center; overflow:hidden;" >
-            Making arrangements now, please wait max till <span id="timer" style=" color:black; "></span>
-        </div>
-        
-    </div>
     
     
-    <p>We have received your request to join today. Right now we are finding the best people and a table number for you. </p><br><br>
-    <p>We'll share the details over email as well before 7pm today (at max).</p>
-    {% if g.user['tble'] %}
-    <a href="/join" target="_blank" class="btn">Check status</a>
-    {% else %}
-    <button class="btn" onclick="show()" style="cursor: not-allowed;">Check status</button>
-    {% endif %}
-    <br><br>
-    <p style="color:red"> Change of plans? <a href="/status/3" style="text-decoration: underline; color:red;">Cancel Now.</a> </p>
+    <p>Thanks for joining our cult mission. <br><br>
+
+        But we are receiving overwhelming responses, more than what we've imagined. Due to technical limitations, we are unable to handle more users now.
+        Estimated wait time: <span id="timer" style=" color:black; "></span> <br><br>
+
+        <a class="share-button btn">Invite only a close friend</a><br><br>
+
+        Please don't share this in as much groups or social media handles as possible. It's a secret now.🤫
+        <br><br>
+
+        <a href="https://wa.me/918249069736?text=Hi" class="btn" target="_blank">WhatsApp us for queries</a>
+
+        </p>
     <hr style="width: 90%; height:3px; background-color:black; margin-top:5%">
     
     <div class="foot" style="display: flex; flex-direction:row;  justify-content: flex-start; width:90%;">
@@ -85,6 +82,7 @@
     function show(){
         document.getElementById('warning2').classList.remove('dd-none')
      }
+     
 
      var countDownDate = new Date("Jan 5, 2024 19:00:00").getTime();
 
@@ -103,12 +101,13 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
+    days = ("000" + days).slice(-2);
     hours = ("000" + hours).slice(-2);
     minutes = ("000" + minutes).slice(-2);
     seconds = ("000" + seconds).slice(-2);
 
     // Display the result in the element with id="demo"
-    document.getElementById("timer").innerHTML = hours + "h "
+    document.getElementById("timer").innerHTML = days + "d " +  hours + "h "
     + minutes + "m " + seconds + "s ";
 
     // If the count down is finished, write some text
@@ -117,6 +116,22 @@
         document.getElementById("demo").innerHTML = "EXPIRED";
     }
     }, 1000);
+
+    document.querySelector('.share-button').addEventListener('click', function() {
+        if(navigator.share) {
+          navigator.share({
+            title: 'Chans',
+            text: 'Meet friends of your friends in real-life',
+            url: 'https://chans.social'
+          })
+          .then(() => console.log('Share complete'))
+          .error((error) => console.error('Could not share at this time', error))
+        }
+        else{
+            navigator.clipboard.writeText("https://chans.social");
+            alert("Copied the link. Share it with your close friend.");
+        }
+      });
 </script>
 
 {% endblock %}
