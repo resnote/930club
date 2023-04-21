@@ -42,7 +42,7 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = db_fetch_dict('SELECT * FROM `cult` WHERE `id` = %s', (user_id,), one=True)
+        g.user = db_fetch_dict('SELECT * FROM `chansprofile` WHERE `id` = %s', (user_id,), one=True)
 
 
 @bp.route('/logout')
@@ -98,8 +98,7 @@ def callback():
         session['user_id'] = user[0]
         flash("login success" , "success")
         id = request.cookies.get('request_id')
-        if user[-1]:
-            return redirect(url_for('form1'))
+
         return redirect(url_for('wait'))
     else:
         # Add user
