@@ -76,7 +76,7 @@ def create_app(test_config=None):
             
             db_connection = get_db()
             db = db_connection.cursor()
-            db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `insta`=%s, `city`=%s, `img=%s` WHERE `id`=%s",(name, num, gender, dob, insta, city, img, user_id))
+            db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `insta`=%s, `city`=%s, `img=%s` WHERE `id`=%s ",(name, num, gender, dob, insta, city, img, user_id))
             db_connection.commit()
             return redirect(url_for('waitlist'))
         return render_template(template)
@@ -162,6 +162,17 @@ def create_app(test_config=None):
             return redirect(url_for('auth.google_login'))
         return render_template(template)
     
+    @app.route("/metthroughwhom")
+    @mobile_template('home/challenge.html')
+    def challenge(template):
+        return render_template(template)
+    
+    @app.route("/result")
+    @mobile_template('home/result.html')
+    def result(template):
+        if not g.user:
+            return redirect(url_for('auth.google_login'))
+        return render_template(template)
     # @app.route("/verify")
     # @mobile_template('home/verify.html')
     # def verify(template):

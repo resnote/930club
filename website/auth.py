@@ -98,6 +98,13 @@ def callback():
         session['user_id'] = user[0]
         flash("login success" , "success")
         id = request.cookies.get('request_id')
+        
+        try:
+            score = request.cookies.get('score')
+            if score:
+                return redirect(url_for('result'))
+        except:
+            pass
 
         return redirect(url_for('wait'))
     else:
@@ -110,4 +117,10 @@ def callback():
         session.clear()
         session['user_id'] = user[0]
     flash('Your account has been created. Now you can login to the ResNote extension and start exploring!', 'info')
+    try:
+        score = request.cookies.get('score')
+        if score:
+            return redirect(url_for('result'))
+    except:
+        pass
     return redirect(url_for('form1'))

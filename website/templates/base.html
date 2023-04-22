@@ -36,7 +36,7 @@
     }
     
     h2 {
-        font-family: 'Jura', sans-serif;
+        font-family: 'Karla', sans-serif;
         font-size: 24px;
         font-weight: 700;
         line-height: 150%;
@@ -44,6 +44,10 @@
     }
 
     h1{
+        font-family: 'Karla', sans-serif !important;
+    }
+
+    p{
         font-family: 'Jura', sans-serif !important;
     }
 
@@ -113,7 +117,7 @@
         margin: 0 auto 16px;
       }
       .sec p {
-        font-family: 'Karla', sans-serif;
+        font-family: 'Jura', sans-serif;
         font-size: 20px;
         font-weight: 400;
         line-height: 150%;
@@ -167,7 +171,7 @@
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        height: 70px;
+        height: 48px;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
         -webkit-box-align: center;
@@ -190,8 +194,8 @@
     <div id="navlist" class="navbar w-nav"
     style="z-index:100; transform: translateX(0px) translateY(0px) translateZ(0px); transform-style: preserve-3d; transition: transform 360ms ease 0s;">
 
-        <a href="/"><img src="{{url_for('static', filename='images/chan.png')}}" width="100px" alt=""></a>
-        <div class="topnav-right" id="myNavbar">
+        <a href="/" style="font-size: 16; font-family:'Jura', sans-serif; font-weight:bold">Chans</a>
+        <div class="topnav-right" id="myNavbar" style="color:white; font-family:'Jura', sans-serif; margin-right: 30px; font-weight:regular">
             {% if not g.user %}
             <a href="/googleLogin">Login</a>
             {% else %}
@@ -201,6 +205,7 @@
 
         <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-1"></div>
     </div>
+
 
 
   {% block content %}{% endblock %}
