@@ -456,7 +456,7 @@
 <div class="form-cont" style="margin-top:2%; display: flex; justify-content:center; flex-direction:column; align-items:center">
 
     <div style="display: flex; flex-direction:row; justify-content:center;">
-        <div style="display: flex; flex-direction:column; justify-content:center; width: 500px; margin-top: 91px">
+        <div style="display: flex; flex-direction:column; justify-content:center; width: min(350px,100%); margin-top: 91px">
             <p style="font-size: 15; font-family: 'Jura', sans-serif">
                 Can you remember through whom did <br> you meet your closest friends?
             </p>
@@ -464,7 +464,6 @@
                 2:00
             </p>
             <form id="msform" method="post" style="margin-top: 55px;">
-                <fieldset>
                     <label id="friend" style="width: 117px; height: 28px; text-align:left; font-family: 'Jura';font-style: normal;font-weight: 700; font-size: 14px; line-height: 17px;"> Name of your friends</label> 
                     <label id="name" style="width: 117px; height: 28px; margin-left:53px; text-align:left;  font-family: 'Jura';font-style: normal;font-weight: 700; font-size: 14px; line-height: 17px; color:gray"> Who introduced you to them?</label>
                     
@@ -508,7 +507,6 @@
                     <input class="fs d-none" id="f13" style="width: 139px; height: 58px;" type="text" name="fname" placeholder="Friend 1" required/>
                     <input class="ns d-none" onchange="end()" id="n13" style="width: 139px; height: 58px; margin-left:29px"  type="text" name="lname" placeholder="Name 1" required/>
 
-                </fieldset>
             </form>
 
             <p style="font-size:12px; font-weight:300; margin-top:93px">
@@ -541,7 +539,7 @@
     console.log(login)
     function on() {
         if(login){
-            window.location.replace("https:/chans.social/result")
+            window.location.replace("/result")
         }
         document.getElementById("overlay").style.display = "block";
       }
