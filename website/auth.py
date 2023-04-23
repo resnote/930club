@@ -29,7 +29,7 @@ GOOGLE_CLIENT_ID ="428722172324-dcqj9kqu41c32lq34k7a98qtr4uaskpv.apps.googleuser
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
-    redirect_uri="https://chans.social/callback"
+    redirect_uri="http://localhost:5000/callback"
 )
 
 
@@ -99,14 +99,9 @@ def callback():
         flash("login success" , "success")
         id = request.cookies.get('request_id')
         
-        try:
-            score = request.cookies.get('score')
-            if score:
-                return redirect(url_for('result'))
-        except:
-            pass
-
-        return redirect(url_for('wait'))
+        if (user[-1]):
+            return redirect(url_for('wait'))
+        return redirect(url_for('form1'))
     else:
         # Add user
         date = datetime.datetime.now()
@@ -117,10 +112,10 @@ def callback():
         session.clear()
         session['user_id'] = user[0]
     flash('Your account has been created. Now you can login to the ResNote extension and start exploring!', 'info')
-    try:
-        score = request.cookies.get('score')
-        if score:
-            return redirect(url_for('result'))
-    except:
-        pass
+    # try:
+    #     score = request.cookies.get('score')
+    #     if score:
+    #         return redirect(url_for('result'))
+    # except:
+    #     pass
     return redirect(url_for('form1'))
