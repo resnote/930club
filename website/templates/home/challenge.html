@@ -628,16 +628,14 @@
         
     }
 
-    var ns = document.getElementsByClassName("ns");
-    for (var i = 0; i < ns.length; i++) {
-        ns.item(i).addEventListener('click', function(){
-            shiftfocus("name");
-        });
-    }
-
 
     document.getElementById('f1').addEventListener('click', function(){
         shiftfocus("friend");
+        countdown();
+    })
+
+    document.getElementById('n1').addEventListener('click', function(){
+        shiftfocus("name");
         countdown();
     })
 
