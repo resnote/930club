@@ -78,7 +78,7 @@ def create_app(test_config=None):
             db = db_connection.cursor()
             db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `insta`=%s, `city`=%s, `img`=%s WHERE `id`=%s",(name, num, gender, dob, insta, city, img, user_id))
             db_connection.commit()
-            return redirect(url_for('waitlist'))
+            return redirect(url_for('wait'))
         return render_template(template)
     
     # @app.route("/profile", methods=('GET', 'POST'))
