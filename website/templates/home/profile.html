@@ -275,7 +275,7 @@
                     <input class="city" id="Panchkula" onclick="select_city('Panchkula')"  style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Panchkula"readonly /><br>
                     <input class="city" id="Mohali" onclick="select_city('Mohali')"  style="width: 78px; height: 45px; margin-top: 10px" type="text" name="insta" value="Mohali" readonly/>
                     <input class="city" onclick="select_city('as')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="city" placeholder="Other"/><br>
-                    <a class="action-button" onclick="submit()" style="margin-top: 20px; border-radius:5px;">Submit</a>
+                    <button class="action-button" style="margin-top: 20px; border-radius:5px;">Submit</button>
                 </fieldset>
             </form>
         </div>
@@ -342,22 +342,6 @@
     }
 
 
-    function submit(){
-        console.log(document.getElementById('imge').value)
-        if(document.getElementById('imge').value==""){
-            document.getElementById('err1').classList.remove('d-none')
-        }
-        else if(document.getElementById('insta').value==""){
-            document.getElementById('err2').classList.remove('d-none')
-        }
-        else if(document.getElementById('gender').value=="gender"){
-            alert("Please state your Gender")
-        }
-        else{
-            document.getElementById('msform').submit();
-        }
-        
-    }
 </script>
 
 {% endblock %}
