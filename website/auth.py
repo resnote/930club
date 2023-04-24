@@ -99,7 +99,7 @@ def callback():
         flash("login success" , "success")
         id = request.cookies.get('request_id')
         
-        if (user[-1]):
+        if (user[-2]):
             return redirect(url_for('wait'))
         return redirect(url_for('form1'))
     else:
