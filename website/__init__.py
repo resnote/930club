@@ -81,26 +81,31 @@ def create_app(test_config=None):
             return redirect(url_for('wait'))
         return render_template(template)
     
-    # @app.route("/profile", methods=('GET', 'POST'))
-    # @mobile_template('home/profile.html')
-    # def profile(template):
+    @app.route("/profile", methods=('GET', 'POST'))
+    @mobile_template('home/profile.html')
+    def profile(template):
 
-    #     if not g.user:
-    #         return redirect(url_for('auth.google_login'))
-    #     if request.method=='POST':
-    #         user_id = g.user['id']
-    #         num = request.form['num']
-    #         gender = request.form['gender']
-    #         college = request.form['college']
-    #         insta = str(request.form['insta'])
-    #         img = request.form['imge']
+        if not g.user:
+            return redirect(url_for('auth.google_login'))
+        if request.method=='POST':
+            user_id = g.user['id']
+            fname= request.form['fname']
+            lname = request.form['lname']
+            name = fname + " " + lname
+            num = request.form['num']
+            gender = request.form['gender']
+            dob = str(request.form['dob'])
+            insta = request.form['insta']
+            city = "Mohali"
             
-    #         db_connection = get_db()
-    #         db = db_connection.cursor()
-    #         db.execute("UPDATE `cult` SET `num`=%s, `gender`=%s, `college`=%s, `insta`=%s, `img`=%s WHERE `id`=%s",(num, gender, college, insta, img, user_id))
-    #         db_connection.commit()
-    #         return redirect(url_for("profile"))
-    #     return render_template(template)
+            img = request.form['imge']
+            
+            db_connection = get_db()
+            db = db_connection.cursor()
+            db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `insta`=%s, `city`=%s, `img`=%s WHERE `id`=%s",(name, num, gender, dob, insta, city, img, user_id))
+            db_connection.commit()
+            return redirect(url_for("profile"))
+        return render_template(template)
     
     # @app.route("/join", methods=('GET', 'POST'))
     # @mobile_template('home/join.html')
@@ -158,6 +163,20 @@ def create_app(test_config=None):
     @app.route("/waitlist")
     @mobile_template('home/waitlist.html')
     def wait(template):
+        if not g.user:
+            return redirect(url_for('auth.google_login'))
+        return render_template(template)
+    
+    @app.route("/terms")
+    @mobile_template('home/terms.html')
+    def terms(template):
+        # if not g.user:
+        #     return redirect(url_for('auth.google_login'))
+        return render_template(template)
+    
+    @app.route("/privacy")
+    @mobile_template('home/privacy.html')
+    def privacy(template):
         # if not g.user:
         #     return redirect(url_for('auth.google_login'))
         return render_template(template)
