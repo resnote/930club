@@ -6,6 +6,20 @@
 
 {% block content %}
 
+<style>
+    .btn{
+        background-color: black;
+        color: white;
+        border: none;
+        -webkit-box-shadow: 0 0 10px rgb(0,0,0);
+        -moz-box-shadow: 0 0 10px rgb(0,0,0);
+    }
+
+    .btn:hover{
+        color: white;
+    }
+</style>
+
 <section class="sec1">
     <img src="{{url_for('static', filename='images/chan.png')}}" style="width: max(15%,100px); height:auto" class="img1" alt="">
     <img src="{{url_for('static', filename='images/frnds.png')}}" style="margin-top: 5px;" class='img2' alt="">
@@ -62,7 +76,7 @@
 </div>
 <section id='last' class="sec1">
 
-    <h2>No texting at all⌨️</h2>
+    <h2>No texting⌨️</h2>
     <p style="margin-top: 20px;">Only socializing in real life</p>
     {% if g.user %}
     <a class="btn" href="/waitlist">Find your cult👋</a>
