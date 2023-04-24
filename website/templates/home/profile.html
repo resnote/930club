@@ -251,7 +251,7 @@
                 <fieldset>
                     <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"  />
                     <div class="upload-btn-wrapper">
-                        {% if g.user['img']!="None" %}
+                        {% if g.user['img']!="" %}
                         <img id="img" width="100px" height="100px" src="{{g.user['img']}}" alt=" Click to upload photo">
                         {% else %}
                         <img id="img" width="100px" height="100px" src="{{url_for('static', filename='images/upload.png')}}" alt=" Click to upload photo">
