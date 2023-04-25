@@ -53,7 +53,6 @@
                 limitations, we are unable to handle more users now. <br>
                 <span style="font-weight: bold;">Estimated wait time:</span> <span id="timer" style=" color:black; font-weight: bold;"></span>
             </p>
-
             <button class="btn share-button"
                 style="margin-top:80px; width: 185px; height: 58px; background-color:#05A5FF; color:white; margin-left:75px; border: none; padding:12px; border-radius:10px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);font-family: 'Jura'; font-style: normal; font-weight: 700; font-size: 14px; line-height: 17px !important; text-align: center; width: 185px;">
                 Invite just <br> 1 close friend </button>
@@ -155,19 +154,19 @@
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
-
+    ref = "{{g.user['id']}}"
     document.querySelector('.share-button').addEventListener('click', function () {
         if (navigator.share) {
             navigator.share({
                 title: 'Chans',
-                text: 'Meet friends of your friends in real-life',
-                url: 'https://chans.social'
+                text: 'Meet friends of your friends in real-life \n',
+                url: `https://chans.social/${ref}`
             })
                 .then(() => console.log('Share complete'))
                 .error((error) => console.error('Could not share at this time', error))
         }
         else {
-            navigator.clipboard.writeText("https://chans.social");
+            navigator.clipboard.writeText(`https://chans.social/${ref}`);
             alert("Copied the link. Share it with your close friend.");
         }
     });

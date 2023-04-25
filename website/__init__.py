@@ -110,6 +110,15 @@ def create_app(test_config=None):
             return redirect(url_for("profile"))
         return render_template(template)
     
+    @app.route("/<string:id>")
+    @mobile_template('home/home.html')
+    def refx(template, id):
+        if g.user:
+            if not g.user['num']:
+                return redirect(url_for('form1'))
+        resp = make_response(render_template(template))
+        resp.set_cookie('ref', id)
+        return render_template(template, id=id)
     # @app.route("/join", methods=('GET', 'POST'))
     # @mobile_template('home/join.html')
     # def join(template):

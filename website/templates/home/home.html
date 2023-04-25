@@ -131,6 +131,12 @@
                 = "-80px";
         }
     }
+
+    refid = '{{id}}';
+    if (refid){
+        document.cookie = `ref=${refid}`;  
+    }
+       
 </script>
 
 {% endblock %}
