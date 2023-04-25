@@ -70,6 +70,7 @@ def create_app(test_config=None):
                 num = request.form['num']
                 gender = request.form['gender']
                 dob = str(request.form['dob'])
+                college = request.form['college']
                 insta = request.form['insta']
                 city = "Mohali"
                 
@@ -77,7 +78,7 @@ def create_app(test_config=None):
                 
                 db_connection = get_db()
                 db = db_connection.cursor()
-                db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `insta`=%s, `city`=%s, `img`=%s WHERE `id`=%s",(name, num, gender, dob, insta, city, img, user_id))
+                db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `college`=%s, `insta`=%s, `city`=%s, `img`=%s WHERE `id`=%s",(name, num, gender, dob, college, insta, city, img, user_id))
                 db_connection.commit()
                 return redirect(url_for('wait'))
             except:
@@ -91,23 +92,27 @@ def create_app(test_config=None):
         if not g.user:
             return redirect(url_for('auth.google_login'))
         if request.method=='POST':
-            user_id = g.user['id']
-            fname= request.form['fname']
-            lname = request.form['lname']
-            name = fname + " " + lname
-            num = request.form['num']
-            gender = request.form['gender']
-            dob = str(request.form['dob'])
-            insta = request.form['insta']
-            city = "Mohali"
-            
-            img = request.form['imge']
-            
-            db_connection = get_db()
-            db = db_connection.cursor()
-            db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `insta`=%s, `city`=%s, `img`=%s WHERE `id`=%s",(name, num, gender, dob, insta, city, img, user_id))
-            db_connection.commit()
-            return redirect(url_for("profile"))
+            try:
+                user_id = g.user['id']
+                fname= request.form['fname']
+                lname = request.form['lname']
+                name = fname + " " + lname
+                num = request.form['num']
+                gender = request.form['gender']
+                dob = str(request.form['dob'])
+                college = request.form['college']
+                insta = request.form['insta']
+                city = "Mohali"
+                
+                img = request.form['imge']
+                
+                db_connection = get_db()
+                db = db_connection.cursor()
+                db.execute("UPDATE `chansprofile` SET `name`=%s, `num`=%s, `gender`=%s, `dob`=%s, `college`=%s, `insta`=%s, `city`=%s, `img`=%s WHERE `id`=%s",(name, num, gender, dob, college, insta, city, img, user_id))
+                db_connection.commit()
+                return redirect(url_for('wait'))
+            except:
+                return redirect(url_for('error'))
         return render_template(template)
     
     @app.route("/<string:id>")
