@@ -249,12 +249,12 @@
         <div style="width: min(100%, 400px);">
             <form id="msform" method="post">
                 <fieldset>
-                    <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"  value="{{g.user['img']}}" style="border-radius: 50%;" />
+                    <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"  value="{{g.user['img']}}"  />
                     <div class="upload-btn-wrapper">
                         {% if g.user['img']!="" %}
-                        <img id="img" width="100px" height="100px" src="{{g.user['img']}}" alt=" Click to upload photo">
+                        <img id="img" width="100px" height="100px" src="{{g.user['img']}}" alt=" Click to upload photo" style="border-radius: 50%;">
                         {% else %}
-                        <img id="img" width="100px" height="100px" src="{{url_for('static', filename='images/upload.png')}}" alt=" Click to upload photo">
+                        <img id="img" width="100px" height="100px" src="{{url_for('static', filename='images/upload.png')}}" alt=" Click to upload photo" style="border-radius: 50%;">
                         {% endif %}
                         <input id="inp3" type="file" accept="image/*" />
                     </div> <br>
