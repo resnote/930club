@@ -158,7 +158,7 @@
         border-radius: 3px;
         width: 100%;
         box-sizing: border-box;
-        font-family: Jura;
+        font-family: 'Jura';
         color: #2C3E50;
         font-size: 16px;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -248,7 +248,7 @@
                         {% if g.user['img']!="" %}
                         <img id="img" width="100px" height="100px" src="{{g.user['img']}}" alt=" Click to upload photo" style="border-radius: 50%;">
                         {% else %}
-                        <img id="img" width="100px" height="100px" src="{{url_for('static', filename='images/upload.png')}}" alt=" Click to upload photo" style="border-radius: 50%;">
+                        <img id="img" width="100px" height="100px" src="{{url_for('static', filename='images/upload.png')}}" alt=" Click to upload photo">
                         {% endif %}
                         <input id="inp3" type="file" accept="image/*" />
                     </div> <br>

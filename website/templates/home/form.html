@@ -168,7 +168,7 @@
         border-radius: 3px;
         width: 100%;
         box-sizing: border-box;
-        font-family: Jura;
+        font-family: 'Jura';
         color: #2C3E50;
         font-size: 16px;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -259,10 +259,10 @@
         <div style="width: min(100%, 400px);">
             <form id="msform" method="post">
                 <fieldset>
-                    <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"  />
+                    <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"/>
                     <div class="upload-btn-wrapper">
                         <img id="img" width="100px" height="100px" src="{{url_for('static', filename='images/upload.png')}}" alt=" Click to upload photo">
-                        <input id="inp3" type="file" accept="image/*" />
+                        <input id="inp3" type="file" accept="image/*"/>
                     </div> <br>
                     {% set list1 = g.user['name'].split(' ') %}
                     <input style="width: 150px; height: 58px;" type="text" name="fname" placeholder="First name" value="{{list1[0]}}" required/>
