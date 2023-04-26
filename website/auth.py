@@ -72,56 +72,59 @@ def google_login():
 
 @bp.route("/callback")
 def callback():
-    flow.fetch_token(authorization_response=request.url)
-    # if not session["state"] == request.args["state"]:
-    #     abort(500)  # State does not match!
-
-    credentials = flow.credentials
-    request_session = requests.session()
-    cached_session = cachecontrol.CacheControl(request_session)
-    token_request = google.auth.transport.requests.Request(session=cached_session)
-    time.sleep(5)
-    id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token,
-        request=token_request,
-        audience=GOOGLE_CLIENT_ID
-    )
-
-    name = id_info['name']
-    username = name.lower().replace(" ", "") + "#" + str(random.randint(1000,9999))
-    email = id_info['email']
-    password = id_info['sub']
-
-    user = db_fetch('SELECT * FROM  `chansprofile` WHERE `email`=%s', (email,), one=True)
-    if user is not None:
-        session.clear()
-        session['user_id'] = user[0]
-        flash("login success" , "success")
-        id = request.cookies.get('request_id')
-        
-        if (user[-2]):
-            return redirect(url_for('wait'))
-        return redirect(url_for('form1'))
-    else:
-        # Add user
-        date = datetime.datetime.now()
-        db_insert('INSERT INTO chansprofile (name, email) VALUES (%s, %s)', (name, email))
-        flash("Successfully created account", "info")
-        # Auto-login
-        user = db_fetch('SELECT * FROM  `chansprofile` WHERE `email` = %s', (email,), one=True)
-        session.clear()
-        session['user_id'] = user[0]
-    flash('Your account has been created. Now you can login to the ResNote extension and start exploring!', 'info')
     try:
-        ref = request.cookies.get('ref')
-        if ref:
-            db_insert('INSERT INTO chans (id, `refid`) VALUES (%s, %s)', (user[0], int(ref)))
+        flow.fetch_token(authorization_response=request.url)
+        # if not session["state"] == request.args["state"]:
+        #     abort(500)  # State does not match!
+
+        credentials = flow.credentials
+        request_session = requests.session()
+        cached_session = cachecontrol.CacheControl(request_session)
+        token_request = google.auth.transport.requests.Request(session=cached_session)
+        time.sleep(5)
+        id_info = id_token.verify_oauth2_token(
+            id_token=credentials._id_token,
+            request=token_request,
+            audience=GOOGLE_CLIENT_ID
+        )
+
+        name = id_info['name']
+        username = name.lower().replace(" ", "") + "#" + str(random.randint(1000,9999))
+        email = id_info['email']
+        password = id_info['sub']
+
+        user = db_fetch('SELECT * FROM  `chansprofile` WHERE `email`=%s', (email,), one=True)
+        if user is not None:
+            session.clear()
+            session['user_id'] = user[0]
+            flash("login success" , "success")
+            id = request.cookies.get('request_id')
+            
+            if (user[-2]):
+                return redirect(url_for('wait'))
+            return redirect(url_for('form1'))
+        else:
+            # Add user
+            date = datetime.datetime.now()
+            db_insert('INSERT INTO chansprofile (name, email) VALUES (%s, %s)', (name, email))
+            flash("Successfully created account", "info")
+            # Auto-login
+            user = db_fetch('SELECT * FROM  `chansprofile` WHERE `email` = %s', (email,), one=True)
+            session.clear()
+            session['user_id'] = user[0]
+        flash('Your account has been created. Now you can login to the ResNote extension and start exploring!', 'info')
+        try:
+            ref = request.cookies.get('ref')
+            if ref:
+                db_insert('INSERT INTO chans (id, `refid`) VALUES (%s, %s)', (user[0], int(ref)))
+        except:
+            pass
+        # try:
+        #     score = request.cookies.get('score')
+        #     if score:
+        #         return redirect(url_for('result'))
+        # except:
+        #     pass
+        return redirect(url_for('form1'))
     except:
-        pass
-    # try:
-    #     score = request.cookies.get('score')
-    #     if score:
-    #         return redirect(url_for('result'))
-    # except:
-    #     pass
-    return redirect(url_for('form1'))
+        return redirect(url_for('error'))
