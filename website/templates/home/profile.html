@@ -249,7 +249,7 @@
         <div style="width: min(100%, 400px);">
             <form id="msform" method="post">
                 <fieldset>
-                    <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"  />
+                    <input class="d-none" id="imge" type="text" name="imge" placeholder="College*"  value="{{g.user['img']}}" style="border-radius: 50%;" />
                     <div class="upload-btn-wrapper">
                         {% if g.user['img']!="" %}
                         <img id="img" width="100px" height="100px" src="{{g.user['img']}}" alt=" Click to upload photo">
@@ -345,5 +345,6 @@
 
 
 </script>
+
 
 {% endblock %}
