@@ -8,7 +8,7 @@
 {% block content %}
 <style>
     body {
-        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
+        background: black;
         color: black;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -16,12 +16,13 @@
 
     .sec1 {
         align-items: center;
-        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
+        background: black;
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin-bottom: 10px;
         width: 100%;
+        color: #6868f7 !important;
     }
 
 
@@ -243,6 +244,12 @@
         text-overflow: '';
       }
 
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+    }
+
 
 </style>
 
@@ -267,7 +274,7 @@
                     {% set list1 = g.user['name'].split(' ') %}
                     <input style="width: 150px; height: 58px;" type="text" name="fname" placeholder="First name" value="{{list1[0]}}" required/>
                     <input style="width: 150px; height: 58px; margin-left:20px"  type="text" name="lname" placeholder="Last name" value="{{list1[1]}}" required/>
-                    <input style="width: 150px; height: 58px;" type="tel" name="num" id="num" placeholder="WhatsApp Number" pattern="[0-9]{+}" maxlength="13" required/>
+                    <input style="width: 150px; height: 58px;" type="tel" name="num" id="num" placeholder="WhatsApp Number" pattern="[0-9]{+}" minlength="12" maxlength="13" required/>
                     <select style="width: 150px; height: 58px; margin-left:20px" name="gender" id="gender" required>
                         <option value="gender" disabled selected>Gender</option>
                         <option value="male">Male</option>
@@ -275,13 +282,12 @@
                         <option value="non">Non binary</option>
                     </select>
                     <input style="width: 150px; height: 58px;" type="date" name="dob" placeholder="Birthday" required/> 
-                    <input style="width: 150px; height: 58px; margin-left:20px" type="text" name="college" id="num" placeholder="College/work"  maxlength="90" required/>
-                    <input  id="insta" style="width: 150px; height: 58px;" type="text" name="insta" placeholder="john.smith" required/> 
-                    <label id="label" style="width: 150px; height: 28px; margin-left:20px"> Your Instagram</label>
+                    <input style="width: 150px; height: 58px; margin-left:20px" type="text" name="college" id="num" placeholder="Add college/work"  maxlength="90" required/>
+                    <input  id="insta" style="width: 150px; height: 58px;" type="text" name="insta" placeholder="Your instagram" required/> 
                     <label id="label" style="width: 150px; height: 28px; margin-left:20px"> Your City</label><br>
                     <input class="city" id="Chandigarh" onclick="select_city('Chandigarh')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Chandigarh" readonly /> 
                     <input class="city" id="Panchkula" onclick="select_city('Panchkula')"  style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Panchkula"readonly /><br>
-                    <input class="city" id="Mohali" onclick="select_city('Mohali')"  style="width: 78px; height: 45px; margin-top: 10px" type="text" name="insta" value="Mohali" readonly/>
+                    <input class="city" id="Mohali" onclick="select_city('Mohali')"  style="width: 82px; height: 45px; margin-top: 10px" type="text" name="insta" value="Mohali" readonly/>
                     <input class="city" onclick="select_city('as')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="city" placeholder="Other"/><br>
                     <button class="action-button" style="margin-top: 10px; border-radius:5px;">Submit</button>
                 </fieldset>
