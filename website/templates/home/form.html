@@ -8,7 +8,7 @@
 {% block content %}
 <style>
     body {
-        background: black;
+        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
         color: black;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -16,7 +16,7 @@
 
     .sec1 {
         align-items: center;
-        background: black;
+        background: linear-gradient(142.92deg, #f1fcd2 22.47%, #c0ccf7 83.09%), #fff;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -171,7 +171,7 @@
         box-sizing: border-box;
         font-family: 'Jura';
         color: #2C3E50;
-        font-size: 16px;
+        font-size: 14px;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
         border-radius: 30px;
     }
@@ -244,11 +244,14 @@
         text-overflow: '';
       }
 
-    input[type="date"]::-webkit-inner-spin-button,
-    input[type="date"]::-webkit-calendar-picker-indicator {
+    input::-webkit-calendar-picker-indicator{
         display: none;
-        -webkit-appearance: none;
     }
+
+    input[type="date"]::-webkit-input-placeholder{ 
+        visibility: hidden !important;
+    }
+    
 
 
 </style>
@@ -283,13 +286,13 @@
                     </select>
                     <input style="width: 150px; height: 58px;" type="date" name="dob" placeholder="Birthday" required/> 
                     <input style="width: 150px; height: 58px; margin-left:20px" type="text" name="college" id="num" placeholder="Add college/work"  maxlength="90" required/>
-                    <input  id="insta" style="width: 150px; height: 58px;" type="text" name="insta" placeholder="Your instagram" required/> 
+                    <input  id="insta" style="width: 150px; height: 58px;" type="text" name="insta" placeholder="Your instagram" required/> <br>
                     <label id="label" style="width: 150px; height: 28px; margin-left:20px"> Your City</label><br>
                     <input class="city" id="Chandigarh" onclick="select_city('Chandigarh')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Chandigarh" readonly /> 
                     <input class="city" id="Panchkula" onclick="select_city('Panchkula')"  style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Panchkula"readonly /><br>
                     <input class="city" id="Mohali" onclick="select_city('Mohali')"  style="width: 82px; height: 45px; margin-top: 10px" type="text" name="insta" value="Mohali" readonly/>
                     <input class="city" onclick="select_city('as')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="city" placeholder="Other"/><br>
-                    <button class="action-button" style="margin-top: 10px; border-radius:5px;">Submit</button>
+                    <button class="action-button" style="margin-top: 20px; border-radius:5px;">Submit</button>
                 </fieldset>
             </form>
         </div>

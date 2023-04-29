@@ -160,7 +160,7 @@
         box-sizing: border-box;
         font-family: 'Jura';
         color: #2C3E50;
-        font-size: 16px;
+        font-size: 14px;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
         border-radius: 30px;
     }
@@ -233,6 +233,13 @@
         text-overflow: '';
       }
 
+    input::-webkit-calendar-picker-indicator{
+        display: none;
+    }
+
+    input[type="date"]::-webkit-input-placeholder{ 
+        visibility: hidden !important;
+    }
 
 </style>
 
@@ -263,9 +270,9 @@
                         <option value="non">Non binary</option>
                     </select>
                     <input style="width: 150px; height: 58px;" type="date" name="dob" placeholder="Birthday" value="{{g.user['dob']}}" required/> 
-                    <input style="width: 150px; height: 58px; margin-left:20px" type="text" name="college" id="num" placeholder="College/work" value="{{g.user['college']}}"  maxlength="90" required/>
-                    <input  id="insta" style="width: 150px; height: 58px;" type="text" name="insta" placeholder="john.smith"  value="{{g.user['insta']}}" required/> 
-                    <label id="label" style="width: 150px; height: 28px; margin-left:20px"> Your Instagram</label>
+                    <input style="width: 150px; height: 58px; margin-left:20px" type="text" name="college" id="num" placeholder="add college/work" value="{{g.user['college']}}"  maxlength="90" required/>
+                    <input  id="insta" style="width: 150px; height: 58px;" type="text" name="insta" placeholder="Your instagram"  value="{{g.user['insta']}}" required/> 
+                    <br>
                     <label id="label" style="width: 150px; height: 28px; margin-left:20px"> Your City</label><br>
                     <input class="city" id="Chandigarh" onclick="select_city('Chandigarh')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Chandigarh" readonly /> 
                     <input class="city" id="Panchkula" onclick="select_city('Panchkula')"  style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Panchkula"readonly /><br>
