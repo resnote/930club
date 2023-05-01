@@ -262,7 +262,7 @@
                     {% set list1 = g.user['name'].split(' ') %}
                     <input style="width: 150px; height: 58px;" type="text" name="fname" placeholder="First name" value="{{list1[0]}}" required/>
                     <input style="width: 150px; height: 58px; margin-left:20px"  type="text" name="lname" placeholder="Last name" value="{{list1[1]}}" required/>
-                    <input style="width: 150px; height: 58px;" type="tel" name="num" id="num" placeholder="WhatsApp Number" pattern="[0-9]{+}" maxlength="13" value="{{g.user['num']}}" required/>
+                    <input style="width: 150px; height: 58px;" type="date" name="dob" placeholder="Birthday" value="{{g.user['dob']}}" required/> 
                     <select style="width: 150px; height: 58px; margin-left:20px" name="gender" id="gender" required>
                         <option value="gender" disabled >Gender</option>
                         <option value="male" selected>Male</option>
@@ -270,13 +270,16 @@
                         <option value="non">Non binary</option>
                     </select> 
                     <br>
-                    <input style="width: 180px; height: 58px;" type="date" name="dob" placeholder="Birthday" value="{{g.user['dob']}}" required/> 
+                    <input style="width: 70px; height: 58px;" type="tel" name="code" placeholder="Birthday" value="+91" required/> 
+                    <input style="width: 240px; height: 58px; margin-left:10px;" type="tel" name="num" id="num" placeholder="WhatsApp Number" value="{{g.user['num']}}" pattern="[0-9]{+}" minlength="12" maxlength="13" required/>
                     <br>
-                    <input style="width: 180px; height: 58px; margin-left:20px" type="text" name="college" id="num" placeholder="add college/work" value="{{g.user['college']}}"  maxlength="90" required/>
+                    <input style="width: 320px; height: 58px;" type="text" name="college" id="num" placeholder="College" value="{{g.user['college']}}"  maxlength="90"/>
                     <br>
-                    <input  id="insta" style="width: 180px; height: 58px;" type="text" name="insta" placeholder="Your instagram"  value="{{g.user['insta']}}" required/> 
+                    <input style="width: 320px; height: 58px;" type="text" name="college" id="num" placeholder="Work" value="{{g.user['college']}}"  maxlength="90"/>
                     <br>
-                    <label id="label" style="width: 150px; height: 28px; margin-left:20px"> Your City</label><br>
+                    <input  id="insta" style="width: 320px; height: 58px;" type="text" name="insta" placeholder="Instagram" value="{{g.user['insta']}}" required/> 
+                    <br>
+                    <label id="label" style="width: 150px; height: 28px;"> Your City</label><br>
                     <input class="city" id="Chandigarh" onclick="select_city('Chandigarh')" style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Chandigarh" readonly /> 
                     <input class="city" id="Panchkula" onclick="select_city('Panchkula')"  style="width: 124px; height: 45px; margin-top: 10px" type="text" name="insta" value="Panchkula"readonly /><br>
                     <input class="city" id="Mohali" onclick="select_city('Mohali')"  style="width: 78px; height: 45px; margin-top: 10px" type="text" name="insta" value="Mohali" readonly/>
